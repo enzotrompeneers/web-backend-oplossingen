@@ -20,15 +20,14 @@
            )
         );
 
-$individueelArtikel = false;
-
-    // uitvoeren als de get variabele ID geset is
-	if (isset( $_GET['id'])) {
+    $individueelArtikel = false;
+    
+	if (isset( $_GET['id'])) { // uitvoeren als de get variabele ID geset is
 		$settedID = $_GET['id']; // id is geset
-        $aantalChars = 200;
         $individueelArtikel = true;
 	}
-
+    
+    
 ?>
 <!doctype html>
 <html>
@@ -82,8 +81,8 @@ $individueelArtikel = false;
                         <div>
                         <h2><?= $artikel["titel"] ?></h2>
                         <p><?= $artikel["datum"] ?></p>
-                        <img src="<?= $artikel['afbeelding'] ?>" alt="<?= $artikel['afbeeldingBeschrijving'] ?>">
-                        <p><?= substr( $artikel['inhoud'], 0, 50) ?> ...</p>
+                        <img src="<?= $artikel["afbeelding"] ?>" alt="<?= $artikel["afbeeldingBeschrijving"] ?>">
+                        <p><?= substr( $artikel["inhoud"], 0, 50) ?> ...</p>
                         <a href="index.php?id=<?= $id ?>">Lees meer >></a>
                         </div>
                     <?php endforeach ?>
@@ -92,9 +91,9 @@ $individueelArtikel = false;
                         <div class="artikel">
                             <h2><?= $aArtikels[$settedID]["titel"] ?></h2>
                             <p><?= $aArtikels[$settedID]["datum"] ?></p>
-                            <img src="<?= $aArtikels[$settedID]["afbeelding"] ?>" alt="<?= $aArtikels[$settedID]['afbeeldingBeschrijving'] ?>">
+                            <img src="<?= $aArtikels[$settedID]["afbeelding"] ?>" alt="<?= $aArtikels[$settedID]["afbeeldingBeschrijving"] ?>">
                             <p><?= $aArtikels[$settedID]["inhoud"] ?></p>
-                            <a href="index.php?id=<?php echo $id ?>">GO BACK</a>
+                            <a href="index.php?individueelArtikel=false">GO BACK</a>
                         </div>
                 
             <?php endif ?>
