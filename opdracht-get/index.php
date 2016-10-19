@@ -21,11 +21,13 @@
         );
 
     $individueelArtikel = false;
+    $settedID = -1;
     
 	if (isset( $_GET['id'])) { // uitvoeren als de get variabele ID geset is
 		$settedID = $_GET['id']; // id is geset
         $individueelArtikel = true;
 	}
+
     
     
 ?>
@@ -34,14 +36,20 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Opdracht get</title>
+        <title>
+            <?php if ($settedID<0): ?>
+                Overzicht krant
+            <?php else: ?>
+                Artikel: <?= $aArtikels[$settedID]["titel"] ?>
+            <?php endif ?>
+        </title>
         <link rel="stylesheet" href="http://web-backend.local/css/global.css">
         <link rel="stylesheet" href="http://web-backend.local/css/facade.css">
         <link rel="stylesheet" href="http://web-backend.local/css/directory.css">
         <style>
             div {
                 width: 300px;
-                height: 600px;
+                height: 450px;
                 padding: 10px;
                 border: 5px solid gray;
                 margin: 0;
@@ -49,12 +57,17 @@
                 background-color: darkgrey;
             }
             .artikel {
+                text-align:center;
                 width: 900px;
-                height: 600px;
+                height: 700px;
                 padding: 10px;
                 border: 5px solid gray;
                 margin: 0;
                 background-color: darkgrey;
+            }
+            .artikel img {
+                width:600px;
+                height:400px;
             }
             h2 {
                 font-size: 1.3em;
@@ -69,6 +82,9 @@
             img {
                 width:300px;
                 height:200px;
+            }
+            .goBack {
+                float:right;
             }
         </style>
     </head>
@@ -93,7 +109,7 @@
                             <p><?= $aArtikels[$settedID]["datum"] ?></p>
                             <img src="<?= $aArtikels[$settedID]["afbeelding"] ?>" alt="<?= $aArtikels[$settedID]["afbeeldingBeschrijving"] ?>">
                             <p><?= $aArtikels[$settedID]["inhoud"] ?></p>
-                            <a href="index.php?individueelArtikel=false">GO BACK</a>
+                            <a class="goBack" href="index.php?individueelArtikel=false">GO BACK</a>
                         </div>
                 
             <?php endif ?>
