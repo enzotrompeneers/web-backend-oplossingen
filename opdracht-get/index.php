@@ -21,13 +21,12 @@
         );
 
     $individueelArtikel = false;
-    $settedID = -1;
 	if (isset( $_GET['id'])) { // uitvoeren als de get variabele ID geset is
 		$settedID = $_GET['id']; // id is geset
         $individueelArtikel = true;
 	}
 
-    $titel = ($settedID>-1 ? "Artikel: " . $aArtikels[$settedID]["titel"] : "Overzicht krant" );
+    $titel = (isset($settedID) ? "Artikel: " . $aArtikels[$settedID]["titel"] : "Overzicht krant" );
     
 ?>
 <!doctype html>
