@@ -27,7 +27,7 @@
         $individueelArtikel = true;
 	}
 
-    $titel = ($settedID>-1 ? "Artikel " + $aArtikels[$settedID]["titel"] : "Overzicht krant" );
+    $titel = ($settedID>-1 ? "Artikel: " . $aArtikels[$settedID]["titel"] : "Overzicht krant" );
     
 ?>
 <!doctype html>
