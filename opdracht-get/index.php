@@ -21,13 +21,13 @@
         );
 
     $individueelArtikel = false;
-    
+    $settedID = -1;
 	if (isset( $_GET['id'])) { // uitvoeren als de get variabele ID geset is
 		$settedID = $_GET['id']; // id is geset
         $individueelArtikel = true;
 	}
 
-    
+    $titel = ($settedID>-1 ? "Artikel " + $aArtikels[$settedID]["titel"] : "Overzicht krant" );
     
 ?>
 <!doctype html>
@@ -35,9 +35,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>
-            <?php ($settedID == true ? echo Artikel $aArtikels[$settedID]["titel"] : echo Overzicht krant) ?>
-        </title>
+        <title><?= $titel ?></title>
         <link rel="stylesheet" href="http://web-backend.local/css/global.css">
         <link rel="stylesheet" href="http://web-backend.local/css/facade.css">
         <link rel="stylesheet" href="http://web-backend.local/css/directory.css">
