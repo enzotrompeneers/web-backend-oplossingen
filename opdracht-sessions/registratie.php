@@ -1,3 +1,13 @@
+<?php
+    $focus = "";
+    if(isset($_GET["focus"])) {
+        $focus = $_GET["focus"];
+    }
+    
+    session_start();
+    $email = (isset($_SESSION["gegevens"]["email"]))? $_SESSION["gegevens"]["email"] : "";
+    $nickname = (isset($_SESSION["gegevens"]["nickname"]))? $_SESSION["gegevens"]["nickname"] : "";
+?>
 <!doctype html>
 <html>
     <head>
@@ -18,11 +28,11 @@
                         <ul>
                             <li>
                                 <label for="email">e-mail</label>
-                                <input type="text" id="email" name="email">
+                                <input type="text" id="email" name="email" value="<?= $email ?>" <?= ( $focus == "email" )? "autofocus" : "" ?>>
                             </li>
                             <li>
                                 <label for="nickname">nickname</label>
-                                <input type="text" id="nickname" name="nickname">
+                                <input type="text" id="nickname" name="nickname" value="<?= $nickname ?>" <?= ( $focus == "nickname" )? "autofocus" : "" ?>>
                             </li>
                         </ul>
                         <input type="submit" name="submit" value="Volgende">

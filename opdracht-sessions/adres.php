@@ -1,15 +1,23 @@
 <?php
-    $email = "";
-    $nickname = "";
+    session_start();
 
-    if(isset($_POST["submit"])) {
-        $email = $_POST["email"];
-        $nickname = $_POST["nickname"];
+    $focus = "";
+    if(isset($_GET["focus"])) {
+        $focus = $_GET["focus"];
     }
 
-    session_start();
-    $_SESSION["gegevens"]["email"] = $email;
-    $_SESSION["gegevens"]["nickname"] = $nickname;
+
+    if(isset($_POST["submit"])) {
+        $_SESSION["gegevens"]["email"] = $_POST["email"];
+        $_SESSION["gegevens"]["nickname"] = $_POST["nickname"];
+    }
+    
+    $email = (isset($_SESSION["gegevens"]["email"]))? $_SESSION["gegevens"]["email"] : "";
+    $nickname = (isset($_SESSION["gegevens"]["nickname"]))? $_SESSION["gegevens"]["nickname"] : "";
+    $straat = (isset($_SESSION["gegevens"]["straat"]))? $_SESSION["gegevens"]["straat"] : "";
+    $nummer = (isset($_SESSION["gegevens"]["nummer"]))? $_SESSION["gegevens"]["nummer"] : "";
+    $gemeente = (isset($_SESSION["gegevens"]["gemeente"]))? $_SESSION["gegevens"]["gemeente"] : "";
+    $postcode = (isset($_SESSION["gegevens"]["postcode"]))? $_SESSION["gegevens"]["postcode"] : "";
 ?>
 
 <!doctype html>
@@ -34,19 +42,19 @@
             <ul>
                 <li>
                     <label for="straat">straat</label>
-                    <input type="text" id="straat" name="straat">
+                    <input type="text" id="straat" name="straat" value="<?= $straat ?>" <?= ( $focus == "straat" )? "autofocus" : "" ?>>
                 </li>
                 <li>
                     <label for="nummer">nummer</label>
-                    <input type="text" id="nummer" name="nummer">
+                    <input type="text" id="nummer" name="nummer" value="<?= $nummer ?>" <?= ( $focus == "nummer" )? "autofocus" : "" ?>>
                 </li>
                 <li>
                     <label for="gemeente">gemeente</label>
-                    <input type="text" id="gemeente" name="gemeente">
+                    <input type="text" id="gemeente" name="gemeente" value="<?= $gemeente ?>" <?= ( $focus == "gemeente" )? "autofocus" : "" ?>>
                 </li>
                 <li>
                     <label for="postcode">postcode</label>
-                    <input type="text" id="postcode" name="postcode">
+                    <input type="text" id="postcode" name="postcode" value="<?= $postcode ?>" <?= ( $focus == "postcode" )? "autofocus" : "" ?>>
                 </li>
             </ul>
             <input type="submit" name="submit" value="Volgende">

@@ -16,6 +16,7 @@
     $_SESSION["gegevens"]["nummer"] = $nummer;
     $_SESSION["gegevens"]["gemeente"] = $gemeente;
     $_SESSION["gegevens"]["postcode"] = $postcode;
+
 ?>
 
 <!doctype html>
@@ -32,12 +33,12 @@
         <h1>Overzichtspagina</h1>
         <a href="overzicht.php?session=destroy">Verwijder sessie</a>
         <ul>
-            <li>e-mail: <?= $_SESSION["gegevens"]["email"]?> | <a href="registratie.php">Wijzig</a></li>
-            <li>nickname: <?= $_SESSION["gegevens"]["nickname"] ?> | <a href="registratie.php">Wijzig</a></li>       
-            <li>straat: <?= $_SESSION["gegevens"]["straat"] ?> | <a href="adres.php">Wijzig</a></li>  
-            <li>nummer: <?= $_SESSION["gegevens"]["nummer"] ?> | <a href="adres.php">Wijzig</a></li>  
-            <li>gemeente: <?= $_SESSION["gegevens"]["gemeente"] ?> | <a href="adres.php">Wijzig</a></li>  
-            <li>postcode: <?= $_SESSION["gegevens"]["postcode"] ?> | <a href="adres.php">Wijzig</a></li>  
+            <li>e-mail: <?= $_SESSION["gegevens"]["email"]?> | <a href="registratie.php?focus=email">Wijzig</a></li>
+            <li>nickname: <?= $_SESSION["gegevens"]["nickname"] ?> | <a href="registratie.php?focus=nickname">Wijzig</a></li>       
+            <li>straat: <?= $_SESSION["gegevens"]["straat"] ?> | <a href="adres.php?focus=straat">Wijzig</a></li>  
+            <li>nummer: <?= $_SESSION["gegevens"]["nummer"] ?> | <a href="adres.php?focus=nummer">Wijzig</a></li>  
+            <li>gemeente: <?= $_SESSION["gegevens"]["gemeente"] ?> | <a href="adres.php?focus=gemeente">Wijzig</a></li>  
+            <li>postcode: <?= $_SESSION["gegevens"]["postcode"] ?> | <a href="adres.php?focus=postcode">Wijzig</a></li>  
         </ul>
     </body>
 </html>
