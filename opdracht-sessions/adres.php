@@ -1,6 +1,16 @@
 <?php
+
     session_start();
 
+
+    if ( isset( $_GET['session'] ) )
+    {
+        if ( $_GET['session']  == 'destroy' )
+        {
+            session_destroy( );
+            header( 'location: adres.php' );
+        }
+    }
     $focus = "";
     if(isset($_GET["focus"])) {
         $focus = $_GET["focus"];
@@ -18,6 +28,8 @@
     $nummer = (isset($_SESSION["gegevens"]["nummer"]))? $_SESSION["gegevens"]["nummer"] : "";
     $gemeente = (isset($_SESSION["gegevens"]["gemeente"]))? $_SESSION["gegevens"]["gemeente"] : "";
     $postcode = (isset($_SESSION["gegevens"]["postcode"]))? $_SESSION["gegevens"]["postcode"] : "";
+    
+    
 ?>
 
 <!doctype html>
@@ -34,8 +46,8 @@
         <h1>Registratiegegevens</h1>
         <a href="adres.php?session=destroy">Verwijder sessie</a>
         <ul>
-            <li>e-mail: <?= $_SESSION["gegevens"]["email"]?></li>
-            <li>nickname: <?= $_SESSION["gegevens"]["nickname"] ?></li>            
+            <li>e-mail: <?= $email ?></li>
+            <li>nickname: <?= $nickname ?></li>            
         </ul>
         <h2>Deel 2: adres</h2>
         <form action="overzicht.php" method="post">
