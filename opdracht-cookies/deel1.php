@@ -1,7 +1,22 @@
 <?php
-$fileGegevens = fopen("gegevens.txt", "r") or die("Unable to open file!");
-$gegevens		=	explode( ',', $fileGegevens );
-fclose($fileGegevens);
+    $isIngelogd = false;
+    $message = "";
+    $fileGegevens = file_get_contents("gegevens.txt", "r");
+    $gegevens =	explode( ',', $fileGegevens );
+    $usernameInFile = $gegevens[0];
+    $passwordInFile = $gegevens[1];
+    
+    if(isset($_POST["submit"])) {
+        $username = $_POST["username"];
+        $password = $_POST["password"];
+        if ($usernameInFile == $username && $passwordInFile == $password) {
+            $message = "U bent ingelogd";
+            setcookie("gegevens", "", time()+360); #6min
+            $isIngelogd = true;
+        } else {
+            $message = "Gebruikersnaam en/of paswoord niet correct. Probeer opnieuw.";
+        }
+    }
 ?>
 
 <!doctype html>
@@ -17,14 +32,13 @@ fclose($fileGegevens);
     
     <section class="body">
         <h1>Inloggen</h1>
-        <? php foreach $gegevens as $gegeven: ?>
-        <p><?= $gegeven ?></p>
-        <? endforeach ?>
-            <form>
+        <?php if(!$isIngelogd): ?>
+        <p><?= $message ?></p>
+            <form action="deel1.php" method="post">
                 <ul>
                     <li>
                         <label for="username">gebruikersnaam</label>
-                        <input type="text" id="username" name="gebruikersnaam">
+                        <input type="text" id="username" name="username">
                     </li>
                     <li>
                         <label for="password">paswoord</label>
@@ -33,6 +47,10 @@ fclose($fileGegevens);
                 </ul>
                 <input type="submit" name="submit" value="verzenden">
             </form>
+        <?php else: ?>
+            <p><?= $message ?></p>
+            <a href="deel1.php">Uitloggen</a>
+        <?php endif ?>
     </section>
     </body>
 </html>
