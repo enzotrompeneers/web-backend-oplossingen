@@ -11,7 +11,10 @@
         $password = $_POST["password"];
         if ($usernameInFile == $username && $passwordInFile == $password) {
             $message = "U bent ingelogd";
-            setcookie("gegevens", "", time()+360); #6min
+            setcookie("username", $username, time()+360); #6min
+            setcookie("password", $password, time()+360); #6min
+            #echo $_COOKIE["username"];
+            #echo $_COOKIE["password"];
             $isIngelogd = true;
         } else {
             $message = "Gebruikersnaam en/of paswoord niet correct. Probeer opnieuw.";
@@ -49,7 +52,8 @@
             </form>
         <?php else: ?>
             <p><?= $message ?></p>
-            <a href="deel1.php">Uitloggen</a>
+            <a href="deel1.php">Uitloggen</a><br><br>
+            <?php print_r($_COOKIE) ?>
         <?php endif ?>
     </section>
     </body>
