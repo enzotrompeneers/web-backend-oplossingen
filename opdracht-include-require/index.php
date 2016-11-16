@@ -1,50 +1,29 @@
-<!doctype html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Opdracht include/require</title>
-        <link rel="stylesheet" href="http://web-backend.local/css/global.css">
-        <link rel="stylesheet" href="http://web-backend.local/css/facade.css">
-        <link rel="stylesheet" href="http://web-backend.local/css/directory.css">
-    </head>
-    <style>
-        ul {
-            list-style-type: none;
-            margin: 0;
-            overflow: hidden;
-            background-color: #333;
+<?php
+    $artikels[0]["title"] = "Titel van artikel 1";
+    $artikels[0]["text"] = "Tekst van artikel 1";
+    $artikels[0]["tags"] = "tag 1 van artikel 1";
+
+    $artikels[1]["title"] = "Titel van artikel 2";
+    $artikels[1]["text"] = "Tekst van artikel 2";
+    $artikels[1]["tags"][0] = "tag 1 van artikel 2";
+    $artikels[1]["tags"][1] = "tag 2 van artikel 2";
+
+    $artikels[2]["title"] = "Titel van artikel 3";
+    $artikels[2]["text"] = "Tekst van artikel 3";
+    $artikels[2]["tags"][0] = "tag 1 van artikel 3";
+    $artikels[2]["tags"][1] = "tag 2 van artikel 3";
+    $artikels[2]["tags"][2] = "tag 3 van artikel 3";
+?>
+<?php include "view/header-partial.php" ?>
+<?php include "view/body-partial.php" ?>
+<div class="artikel">
+    <?php 
+        for ($i = 0, $iLen = 3;$i < $iLen; $i++) {
+            foreach ($artikels[$i] as $value) {
+                echo "$value<br> \n"; #error bij 3de dimensie voor de tags.
+            }
+            echo "<br>";
         }
-        li {
-            float: left;
-        }
-        li a {
-            display: block;
-            color: white;
-            text-align: center;
-            text-decoration: none;
-            margin: 20px;
-        }
-        li a:hover:not(.active) {
-            background-color: #111;
-        }
-    </style>
-    <body>
-        <header>
-            <ul>
-              <li><a href="#home">Home</a></li>
-              <li><a href="#news">News</a></li>
-              <li><a href="#contact">Contact</a></li>
-            </ul>
-        </header>
-        <h1>Web-backend opdracht</h1>
-        <h2>Opdracht include/require</h2>
-        <footer>
-            <ul>
-              <li><a href="#home">Home</a></li>
-              <li><a href="#news">News</a></li>
-              <li><a href="#contact">Contact</a></li>
-            </ul>
-        </footer>
-    </body>
-</html>
+    ?>
+</div>
+<?php include "view/footer-partial.php" ?>
