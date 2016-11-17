@@ -6,11 +6,11 @@
             $this->relative = $this->formatNumber($this->absolute -1);
             $this->hundred = $this->formatNumber($this->absolute * 100);
             
-            if ($this->absolute > 0) {
-                 $this->nominal = "positive";
-            } elseif ($this->absolute == 1) {
+            if ($this->absolute == 1) {
                 $this->nominal = "status-quo";
-            } else {
+            } elseif ($this->absolute > 1) {
+                $this->nominal = "positive";
+            } else { 
                 $this->nominal = "negative";
             }
         }
