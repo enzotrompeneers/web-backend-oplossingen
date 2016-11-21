@@ -1,6 +1,6 @@
 <?php
     class HTMLBuilder {
-        public $header, $body, $footer;
+        private $header, $body, $footer;
         public function __constructor($iHeader, $iBody, $iFooter) {
             echo "5";
             $this->header = $iHeader;
