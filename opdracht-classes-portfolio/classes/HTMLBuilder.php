@@ -1,8 +1,10 @@
 <?php
 echo "2";
     class HTMLBuilder {
-        private $header, $body, $footer;
-        public function __constructor($iHeader, $iBody, $iFooter) {
+        private $header;
+        private $body;
+        private $footer;
+        public function __construct($iHeader, $iBody, $iFooter) {
             echo "3";
             $this->header = $iHeader;
             $this->body = $iBody;

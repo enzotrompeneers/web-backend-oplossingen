@@ -20,6 +20,7 @@
     <?php 
         for ($i = 0, $iLen = 3;$i < $iLen; $i++) {
             foreach ($artikels[$i] as $value) {
+                
                 echo "$value<br> \n"; #error bij 3de dimensie voor de tags.
             }
             echo "<br>";
