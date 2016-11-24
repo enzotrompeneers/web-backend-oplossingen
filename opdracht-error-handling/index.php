@@ -39,6 +39,7 @@
             createMessage($message);
         }
     }
+    $message = showMessage();
     
     function logToFile($message) {
         $dateAndTime = "[" . date( "H:i:s", time() ) . "]";
@@ -54,12 +55,14 @@
         session_destroy();
     }
     function showMessage() {
-        /*
-        Deze haalt de message-data uit de $_SESSION en unset daarna deze data zodat ze niet meer in de $_SESSION voorkomt
-Als er geen message-data in de $_SESSION zit, returnt deze functie FALSE
-Anders wordt de message-data gereturnd
-Spreek deze functie onderaan de try/catch-block aan en vang het resultaat op in een variabele. Gebruik deze variabele om een gepaste boodschap te tonen.
-        */
+		if (isset($_SESSION["message"])) {
+			$message = $_SESSION["message"];
+			unset($_SESSION["message"]);
+		}
+        else {
+            $message = false;
+        }
+		return $message;
     }
 ?>
 <!doctype html>
@@ -76,6 +79,11 @@ Spreek deze functie onderaan de try/catch-block aan en vang het resultaat op in 
         
         <section class="body">
             <h1>Geef uw kortingscode op</h1>
+            
+            <?php if ( $message ): ?>
+			<?= $message["type"] ?>"><?= $message["text"]?>
+		    <?php endif ?>
+            
             <?php if($isValid): ?>
             <?= "Korting toegekend!" ?>
             <?php endif ?> 
