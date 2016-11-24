@@ -19,14 +19,14 @@
     }
     catch(Exception $e) {
         $messageCode = $e->getMessage();
-        $message["type"];
-        $message["text"];
+        $message = array();
+        #$message["type"];
+        #$message["text"];
         
         switch($messageCode) {
             case "SUBMIT-ERROR":
                 $message["type"] = $messageCode;
                 $message["text"] = "Er werd met het formulier geknoeid";
-                
                 break;
             case "VALIDATION-CODE-LENGTH":
                 $message["type"] = $messageCode;
@@ -51,8 +51,7 @@
 		file_put_contents( 'error.txt', $error, FILE_APPEND );
     }
     function createMessage($message) {
-        $_SESSION["message"]["type"] = $_SESSION[$message["type"]][$message["text"]];
-        session_destroy();
+       $_SESSION['message']	=	$message;
     }
     function showMessage() {
 		if (isset($_SESSION["message"])) {
@@ -81,21 +80,21 @@
             <h1>Geef uw kortingscode op</h1>
             
             <?php if ( $message ): ?>
-			<?= $message["type"] ?>"><?= $message["text"]?>
+			<?= $message["text"] ?>
 		    <?php endif ?>
             
             <?php if($isValid): ?>
             <?= "Korting toegekend!" ?>
             <?php endif ?> 
             
-            <form action="#" method="post">
+            <form action="index.php" method="post">
                 <ul>
                     <li>
                         <label for="code">Kortingscode</label>
                         <input type="text" id="code" name="code">
                     </li>
                 </ul>
-                <input type="submit">
+                <input type="submit" name="submit">
             </form>
 		</section>
     </body>
