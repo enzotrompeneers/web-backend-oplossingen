@@ -1,29 +1,2 @@
-[19:25:09] - 127.0.0.1 - type:[De kortingscode heeft niet de juiste lengte] De kortingscode heeft niet de juiste lengte
-[19:25:33] - 127.0.0.1 - type:[De kortingscode heeft niet de juiste lengte] De kortingscode heeft niet de juiste lengte
-[19:26:55] - 127.0.0.1 - type:[De kortingscode heeft niet de juiste lengte] De kortingscode heeft niet de juiste lengte
-[19:29:00] - 127.0.0.1 - type:[De kortingscode heeft niet de juiste lengte] De kortingscode heeft niet de juiste lengte
-[19:29:02] - 127.0.0.1 - type:[De kortingscode heeft niet de juiste lengte] De kortingscode heeft niet de juiste lengte
-[19:29:03] - 127.0.0.1 - type:[De kortingscode heeft niet de juiste lengte] De kortingscode heeft niet de juiste lengte
-[19:29:04] - 127.0.0.1 - type:[De kortingscode heeft niet de juiste lengte] De kortingscode heeft niet de juiste lengte
-[19:29:04] - 127.0.0.1 - type:[De kortingscode heeft niet de juiste lengte] De kortingscode heeft niet de juiste lengte
-[19:29:04] - 127.0.0.1 - type:[De kortingscode heeft niet de juiste lengte] De kortingscode heeft niet de juiste lengte
-[19:29:04] - 127.0.0.1 - type:[De kortingscode heeft niet de juiste lengte] De kortingscode heeft niet de juiste lengte
-[19:29:06] - 127.0.0.1 - type:[De kortingscode heeft niet de juiste lengte] De kortingscode heeft niet de juiste lengte
-[19:29:33] - 127.0.0.1 - type:[De kortingscode heeft niet de juiste lengte] De kortingscode heeft niet de juiste lengte
-[19:31:15] - 127.0.0.1 - type:[De kortingscode heeft niet de juiste lengte] De kortingscode heeft niet de juiste lengte
-[19:31:23] - 127.0.0.1 - type:[De kortingscode heeft niet de juiste lengte] De kortingscode heeft niet de juiste lengte
-[19:31:35] - 127.0.0.1 - type:[De kortingscode heeft niet de juiste lengte] De kortingscode heeft niet de juiste lengte
-[19:31:43] - 127.0.0.1 - type:[De kortingscode heeft niet de juiste lengte] De kortingscode heeft niet de juiste lengte
-[19:32:26] - 127.0.0.1 - type:[De kortingscode heeft niet de juiste lengte] De kortingscode heeft niet de juiste lengte
-[19:32:27] - 127.0.0.1 - type:[De kortingscode heeft niet de juiste lengte] De kortingscode heeft niet de juiste lengte
-[19:32:29] - 127.0.0.1 - type:[De kortingscode heeft niet de juiste lengte] De kortingscode heeft niet de juiste lengte
-[19:32:36] - 127.0.0.1 - type:[De kortingscode heeft niet de juiste lengte] De kortingscode heeft niet de juiste lengte
-[19:33:14] - 127.0.0.1 - type:[De kortingscode heeft niet de juiste lengte] De kortingscode heeft niet de juiste lengte
-[19:33:17] - 127.0.0.1 - type:[De kortingscode heeft niet de juiste lengte] De kortingscode heeft niet de juiste lengte
-[19:33:19] - 127.0.0.1 - type:[De kortingscode heeft niet de juiste lengte] De kortingscode heeft niet de juiste lengte
-[19:33:22] - 127.0.0.1 - type:[De kortingscode heeft niet de juiste lengte] De kortingscode heeft niet de juiste lengte
-[19:33:44] - 127.0.0.1 - type:[De kortingscode heeft niet de juiste lengte] De kortingscode heeft niet de juiste lengte
-[19:34:28] - 127.0.0.1 - type:[De kortingscode heeft niet de juiste lengte] De kortingscode heeft niet de juiste lengte
-[19:34:32] - 127.0.0.1 - type:[De kortingscode heeft niet de juiste lengte] De kortingscode heeft niet de juiste lengte
-[19:34:39] - 127.0.0.1 - type:[De kortingscode heeft niet de juiste lengte] De kortingscode heeft niet de juiste lengte
+[24/11/16 test 19:47:41] - 127.0.0.1 - type:[VALIDATION-CODE-LENGTH] De kortingscode heeft niet de juiste lengte
 

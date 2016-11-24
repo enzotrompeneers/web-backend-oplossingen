@@ -42,10 +42,10 @@
     $message = showMessage();
     
     function logToFile($message) {
-        $dateAndTime = "[" . date( "H:i:s", time() ) . "]";
+        $dateAndTime = "[" . date("d/n/y") . " " . date("H:i:s")  . "]";
         // $_SERVER['REMOTE_ADDR'] or $_SERVER['REMOTE_HOST']
         $localIP = " - " . $_SERVER['REMOTE_ADDR'] . " - ";
-        $typeError = "type:[" . $message["text"] . "] ";
+        $typeError = "type:[" . $message["type"] . "] ";
         
         $error = $dateAndTime . $localIP . $typeError . $message["text"] . "\n\r"; //geen single quotes bij newline en return
 		file_put_contents( 'error.txt', $error, FILE_APPEND );
