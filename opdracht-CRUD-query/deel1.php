@@ -26,7 +26,7 @@
         }
     }
     catch ( PDOException $e ) {
-        $msg = "Foutboodschap: " . $e.getMessage();
+        $msg = "Foutboodschap: " . $e->getMessage();
     }
 ?>
 
