@@ -13,26 +13,27 @@
             $brouwers[] = $row;
         }
 
-         $querystr = 'SELECT brnaam 
-                     from brouwers 
-                     ';
-        $statement = $db->prepare($querystr);
-        $statement->execute();
-        $brouwerijNamen = array();
-        while ($row = $statement->fetch(PDO::FETCH_ASSOC)) { 
-            $brouwerijNamen[] = $row;
-        }
-
+        $gekozenBrouwerNr = 0;
+        $bieren = array();
         if (isset($_GET["submit"] ) )
         {
-            if (isset($_GET["brouwerijNaam"] ) ) {
-                $gekozenBrouwer = $_GET["brouwerijNaam"];
-                echo $gekozenBrouwer;
+            if (isset($_GET["brouwerijNr"] ) ) {
+                $gekozenBrouwerNr = $_GET["brouwerijNr"];
+                //echo $gekozenBrouwerNr;
+
+                $querystr  =   'SELECT naam
+                                FROM bieren 
+                                WHERE brouwernr = :brouwernr
+                                ';
+                $statement = $db->prepare($querystr);
+                $statement->bindParam(":brouwernr", $gekozenBrouwerNr, PDO::PARAM_INT);
+                $statement->execute();
+
+                while ($row = $statement->fetch(PDO::FETCH_ASSOC)) { // fetchAssoc !!! fetchRow geeft telkens een nummer!!!
+                    $bieren[] = $row["naam"]; // heel de rij niet dus ['naam'] enkel
+                }
             }
-
         }
-
-
     }
     catch ( PDOException $e ) {
         $msg = "Foutboodschap: " . $e->getMessage();
@@ -59,13 +60,13 @@
         <section class="body">
             <h1>deel 2:</h1>
             <form action="deel2.php" method="GET">
-               <select name="brouwerijNaam">
-                <?php foreach ($brouwerijNamen as $brouwerij): ?>
-                    <?php foreach ($brouwerij as $value): ?>
-                        <option value="<?= $value ?>" > <?= $value ?> </option>
+
+                <select name="brouwerijNr">
+                    <?php foreach ($brouwers as $key => $brouwer): ?>
+                        <option value="<?= $brouwer['brouwernr'] ?>" <?= ($gekozenBrouwerNr === $brouwer["brouwernr"])? "selected": "" ?>><?= $brouwer['brnaam'] ?></option>
                     <?php endforeach ?>
-                <?php endforeach ?>
-              </select>
+                </select>
+
               <input type="submit" name="submit" value="Geef mij alle bieren van deze brouwerij">
             </form> 
 
@@ -82,13 +83,10 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($brouwers as $brouwer): ?>
-                    <tr>
-                        <?php for ($i = 1; $i < 2; $i++): ?>
-                            <?php foreach ($brouwer as $value): ?>
-                                <td><?= $value ?></td>
-                            <?php endforeach ?>
-                        <?php endfor ?>
+                    <?php foreach ($bieren as $key => $bier): ?>
+                    <tr class="<?= ($key % 2 === 0 )? "" : "odd" ?>">
+                            <td><?= ++$key ?></td>
+                            <td><?= $bier ?></td>
                     </tr>
                  <?php endforeach ?>
                 </tbody>
