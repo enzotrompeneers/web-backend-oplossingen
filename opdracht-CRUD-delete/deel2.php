@@ -4,18 +4,29 @@
     $password = "root";
     $dbname = "bieren";
     $isSubmitted = false;
+    $alertBox = false;
     $msg = "";
+    $deleteBrouwerNr = "";
 
     try {
         $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password, array (PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
 
         if (isset($_GET["delete"])) {
+            $alertBox = true;
+
             $deleteBrouwerNr = $_GET["delete"];
-            echo $deleteBrouwerNr;
-            $deleteQuery = 'DELETE FROM brouwers WHERE brouwernr= $deleteBrouwerNr '; // getal lukt wel maar een variabele niet??? 
-            $statement = $conn->prepare($deleteQuery);
-            $isDeleted = $statement->execute();
-            $msg = ($isDeleted ? " De datarij werd goed verwijderd" : " De datarij kon niet verwijderd worden. Probeer opnieuw.");
+            #echo $deleteBrouwerNr;
+        }
+        if (isset($_GET["deleteRow"])) {
+            if ($_GET["deleteRow"]) {
+                $deleteQuery = 'DELETE FROM brouwers WHERE brouwernr= 138 '; // getal lukt wel maar een variabele niet??? 
+                $statement = $conn->prepare($deleteQuery);
+                $isDeleted = $statement->execute();
+                $msg = ($isDeleted ? " De datarij werd goed verwijderd" : " De datarij kon niet verwijderd worden. Probeer opnieuw.");
+                }
+            else {
+                $alertbox = false;
+            }
         }
         
 
@@ -56,8 +67,7 @@
     </head>
     <body class="web-backend-opdracht">
         <style>
-            .odd
-            {
+            .odd {
                 background: #F1F1F1;
             }
             .deleteImage {
@@ -65,13 +75,31 @@
                 background-color:transparent;
                 border:none;
             }
+            .redBox {
+                color: #b94a48;
+                background-color: #f2dede;
+                border: 1px solid #eed3d7;
+                margin: 5px 0px;
+                padding: 5px;
+                border-radius: 5px;
+            }
+
         </style>
         <section class="body">
             <?php if ($msg != ""): ?>
                 <?= $msg ?>
             <?php endif ?>
             <h1>Overzicht van de brouwers</h1>
-            <form action="deel1.php" method="GET">
+            <?php if ($alertBox): ?>
+                <div class="redBox">
+                    <form action="deel2.php" method="GET">
+                        <p>Bent u zeker dat u deze datarij wil verwijderen?</p>
+                        <button type="submit" name="deleteRow" value="ja">Ja</button>
+                        <button type="submit">Neeeee</button>
+                    </form>
+                </div>
+            <?php endif ?>
+            <form action="deel2.php" method="GET">
                 <table>
                     <thead>
                         <tr>
@@ -82,7 +110,7 @@
                     </thead>
                     <tbody>
                         <?php foreach ($brouwers as $key => $brouwer): ?>
-                            <tr class="<?= ($key % 2 === 0 )? "odd" : "" ?>">
+                            <tr class=" <?= ($key % 2 === 0 )? "odd" : "" ?>  <?= ($brouwer["brouwernr"] === $deleteBrouwerNr)? "redBox" : "" ?>">
                                 <td><?= ++$key ?></td>
                                 <?php foreach ($brouwer as $value): ?>
                                     <td><?= $value ?></td>
