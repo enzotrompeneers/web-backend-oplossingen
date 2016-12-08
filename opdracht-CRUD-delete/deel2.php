@@ -6,20 +6,24 @@
     $isSubmitted = false;
     $alertBox = false;
     $msg = "";
-    $deleteBrouwerNr = "";
+    $deleteBrouwerNr;
 
     try {
         $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password, array (PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
 
         if (isset($_GET["delete"])) {
             $alertBox = true;
-
             $deleteBrouwerNr = $_GET["delete"];
-            #echo $deleteBrouwerNr;
+
+            echo "delete brouwer nr " . $deleteBrouwerNr;
+            //echo $deleteBrouwerNr;
         }
         if (isset($_GET["deleteRow"])) {
             if ($_GET["deleteRow"]) {
-                $deleteQuery = 'DELETE FROM brouwers WHERE brouwernr= 138 '; // getal lukt wel maar een variabele niet??? 
+
+                 echo "delete brouwer nr " . $deleteBrouwerNr;
+
+                $deleteQuery = 'DELETE FROM brouwers WHERE brouwernr = ' . $deleteBrouwerNr;
                 $statement = $conn->prepare($deleteQuery);
                 $isDeleted = $statement->execute();
                 $msg = ($isDeleted ? " De datarij werd goed verwijderd" : " De datarij kon niet verwijderd worden. Probeer opnieuw.");
@@ -94,7 +98,7 @@
                 <div class="redBox">
                     <form action="deel2.php" method="GET">
                         <p>Bent u zeker dat u deze datarij wil verwijderen?</p>
-                        <button type="submit" name="deleteRow" value="ja">Ja</button>
+                        <button type="submit" name="deleteRow" value="$brouwer["brouwernr"]">Ja</button>
                         <button type="submit">Neeeee</button>
                     </form>
                 </div>

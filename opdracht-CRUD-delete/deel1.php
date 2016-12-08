@@ -12,7 +12,7 @@
         if (isset($_GET["delete"])) {
             $deleteBrouwerNr = $_GET["delete"];
             echo $deleteBrouwerNr;
-            $deleteQuery = 'DELETE FROM brouwers WHERE brouwernr= $deleteBrouwerNr '; // getal lukt wel maar een variabele niet??? 
+            $deleteQuery = 'DELETE FROM brouwers WHERE brouwernr = ' . $deleteBrouwerNr ; // getal lukt wel maar een variabele niet??? 
             $statement = $conn->prepare($deleteQuery);
             $isDeleted = $statement->execute();
             $msg = ($isDeleted ? " De datarij werd goed verwijderd" : " De datarij kon niet verwijderd worden. Probeer opnieuw.");
