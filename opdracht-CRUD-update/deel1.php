@@ -6,20 +6,40 @@
     $isSubmitted = false;
     $alertBox = false;
     $msg = "";
-    $deleteBrouwerNr = "";
+    $deleteBrouwerNr;
+
+    $h1Tekst = "";
+    $showEdit = false;
+    $editBrouwer = array();
+
 
     try {
         $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password, array (PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
 
+        if (isset($_GET["edit"])) {
+            $searchQuery = 'SELECT * FROM brouwers WHERE brouwernr = :brouwerNr';
+            $statement = $conn->prepare($searchQuery);
+            $statement->bindParam(':brouwerNr', $_GET['edit']);
+            $statement->execute();
+            $editBrouwer = $statement->fetch( PDO::FETCH_ASSOC);           
+            $h1Tekst = "Brouwerij " . $editBrouwer["brnaam"] . " (# " . $editBrouwer["brouwernr"] . ") wijzigen";
+            $showEdit = true;
+        }
+
         if (isset($_GET["delete"])) {
             $alertBox = true;
-
             $deleteBrouwerNr = $_GET["delete"];
-            #echo $deleteBrouwerNr;
+
+            echo "delete brouwer nr " . $deleteBrouwerNr;
+            //echo $deleteBrouwerNr;
         }
+        
         if (isset($_GET["deleteRow"])) {
             if ($_GET["deleteRow"]) {
-                $deleteQuery = 'DELETE FROM brouwers WHERE brouwernr= 138 '; // getal lukt wel maar een variabele niet??? 
+
+                 echo "delete brouwer nr " . $deleteBrouwerNr;
+
+                $deleteQuery = 'DELETE FROM brouwers WHERE brouwernr = ' . $deleteBrouwerNr;
                 $statement = $conn->prepare($deleteQuery);
                 $isDeleted = $statement->execute();
                 $msg = ($isDeleted ? " De datarij werd goed verwijderd" : " De datarij kon niet verwijderd worden. Probeer opnieuw.");
@@ -70,7 +90,7 @@
             .odd {
                 background: #F1F1F1;
             }
-            .deleteImage {
+            .btn {
                 padding:0;
                 background-color:transparent;
                 border:none;
@@ -89,17 +109,38 @@
             <?php if ($msg != ""): ?>
                 <?= $msg ?>
             <?php endif ?>
+            <?php if ($showEdit): ?>
+                <h1><?=  $h1Tekst ?></h1>
+                <form action="deel1.php" method="GET">
+                
+                <?= $editBrouwer["brnaam"] ?>
+
+                
+                <ul>
+                    <?php foreach ($editBrouwer as $key => $value): ?>
+                        <?php if ( $key != "brouwernr" ): ?>
+                             <li>
+                                <label for="brnaam"><?= $key ?></label>
+                                <input type="text" id="brnaam" name="brnaam">
+                            </li>
+                        <?php endif ?>
+                    <?php endforeach ?>
+                </ul>
+                <input type="submit" name="submit">
+            </form>
+            <?php endif ?>
+
             <h1>Overzicht van de brouwers</h1>
             <?php if ($alertBox): ?>
                 <div class="redBox">
-                    <form action="deel2.php" method="GET">
+                    <form action="deel1.php" method="GET">
                         <p>Bent u zeker dat u deze datarij wil verwijderen?</p>
-                        <button type="submit" name="deleteRow" value="ja">Ja</button>
+                        <button type="submit" name="deleteRow" value="$brouwer["brouwernr"]">Ja</button>
                         <button type="submit">Neeeee</button>
                     </form>
                 </div>
             <?php endif ?>
-            <form action="deel2.php" method="GET">
+            <form action="deel1.php" method="GET">
                 <table>
                     <thead>
                         <tr>
@@ -116,13 +157,13 @@
                                     <td><?= $value ?></td>
                                 <?php endforeach ?>
                                 <td>
-                                    <button class="deleteImage" type="submit" name="delete" value="<?= $brouwer["brouwernr"] ?>">
+                                    <button class="btn" type="submit" name="delete" value="<?= $brouwer["brouwernr"] ?>">
                                         <img src="icon-delete.png" alt="delete">
                                     </button>
                                 </td>
                                 <td>
-                                    <button class="deleteImage" type="submit" name="delete" value="<?= $brouwer["brouwernr"] ?>">
-                                        <img src="icon-edit.png" alt="edit">
+                                    <button class="btn" type="submit" name="edit" value="<?= $brouwer["brouwernr"] ?>">
+                                        <img src="icon-edit.png" alt="delete">
                                     </button>
                                 </td>
                             </tr>
