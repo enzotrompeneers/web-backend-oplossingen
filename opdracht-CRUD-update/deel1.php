@@ -3,11 +3,11 @@
     $username = "root";
     $password = "root";
     $dbname = "bieren";
+
     $isSubmitted = false;
     $alertBox = false;
+    $brouwerID = false;
     $msg = "";
-    $deleteBrouwerNr;
-
     $h1Tekst = "";
     $showEdit = false;
     $editBrouwer = array();
@@ -15,32 +15,59 @@
 
     try {
         $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password, array (PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+        
+        if (isset($_GET["edited"])) {
+
+            $updateQuery = 'UPDATE brouwers 
+                            SET brnaam = :brnaam,
+                                adres = :adres,
+                                postcode = :postcode,
+                                gemeente = :gemeente,
+                                omzet = :omzet
+                            WHERE brouwernr = :brouwernr';
+
+            $statement = $conn->prepare($updateQuery);
+            $statement->bindParam(':brouwernr', $_GET['brouwernr']);
+            $statement->bindParam(':brnaam', $_GET['brnaam']);
+            $statement->bindParam(':adres', $_GET['adres']);
+            $statement->bindParam(':postcode', $_GET['postcode']);
+
+            $statement->bindParam(':gemeente', $_GET['gemeente']);
+            $statement->bindParam(':omzet', $_GET['omzet']);
+            $isEdited = $statement->execute();
+            $msg = ($isEdited ? ' Aanpassing succesvol doorgevoerd.' : ' Aanpassing is niet gelukt. Probeer opnieuw of neem contact op met de <a href="mailto:trompeneers@telenet.be">systeembeheerder</a>. wanneer deze fout blijft aanhouden.');
+            
+            
+        }
+
 
         if (isset($_GET["edit"])) {
-            $searchQuery = 'SELECT * FROM brouwers WHERE brouwernr = :brouwerNr';
-            $statement = $conn->prepare($searchQuery);
-            $statement->bindParam(':brouwerNr', $_GET['edit']);
-            $statement->execute();
-            $editBrouwer = $statement->fetch( PDO::FETCH_ASSOC);           
-            $h1Tekst = "Brouwerij " . $editBrouwer["brnaam"] . " (# " . $editBrouwer["brouwernr"] . ") wijzigen";
-            $showEdit = true;
+            if ($_GET["edit"] > -1) {
+                $searchQuery = 'SELECT * FROM brouwers WHERE brouwernr = :brouwerNr';
+                $statement = $conn->prepare($searchQuery);
+                $statement->bindParam(':brouwerNr', $_GET['edit']);
+                $statement->execute();
+                $editSucces = $editBrouwer = $statement->fetch( PDO::FETCH_ASSOC);           
+                $h1Tekst = "Brouwerij " . $editBrouwer["brnaam"] . " (# " . $editBrouwer["brouwernr"] . ") wijzigen";
+                $showEdit = true;
+            }
+            else {
+                $msg = "Deze brouwerij werd niet gevonden.";
+            }
+            
         }
 
         if (isset($_GET["delete"])) {
             $alertBox = true;
-            $deleteBrouwerNr = $_GET["delete"];
-
-            echo "delete brouwer nr " . $deleteBrouwerNr;
-            //echo $deleteBrouwerNr;
+            $brouwerID = $_GET["delete"];
         }
-        
-        if (isset($_GET["deleteRow"])) {
-            if ($_GET["deleteRow"]) {
 
-                 echo "delete brouwer nr " . $deleteBrouwerNr;
-
-                $deleteQuery = 'DELETE FROM brouwers WHERE brouwernr = ' . $deleteBrouwerNr;
+        if (isset($_GET["deleted"])) {
+            $brouwerID = $_GET['deleted'];
+            if ($_GET["deleted"]) {
+                $deleteQuery = 'DELETE FROM brouwers WHERE brouwernr = :deleteBrouwerNr';
                 $statement = $conn->prepare($deleteQuery);
+                $statement->bindParam(':deleteBrouwerNr',  $brouwerID);
                 $isDeleted = $statement->execute();
                 $msg = ($isDeleted ? " De datarij werd goed verwijderd" : " De datarij kon niet verwijderd worden. Probeer opnieuw.");
                 }
@@ -49,11 +76,9 @@
             }
         }
         
-
         $selectQuery = 'SELECT * FROM brouwers';
         $statement = $conn->prepare($selectQuery);
         $statement->execute();
-
         $brouwers = array();
         while ($row = $statement->fetch( PDO::FETCH_ASSOC)) { 
             $brouwers[] = $row;
@@ -80,17 +105,18 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Opdracht CRUD delete</title>
+        <title>Opdracht CRUD update</title>
         <link rel="stylesheet" href="http://web-backend.local/css/global.css">
         <link rel="stylesheet" href="http://web-backend.local/css/facade.css">
         <link rel="stylesheet" href="http://web-backend.local/css/directory.css">
     </head>
     <body class="web-backend-opdracht">
         <style>
+            }
             .odd {
                 background: #F1F1F1;
             }
-            .btn {
+            .deleteImage {
                 padding:0;
                 background-color:transparent;
                 border:none;
@@ -105,42 +131,39 @@
             }
 
         </style>
-        <section class="body">
-            <?php if ($msg != ""): ?>
-                <?= $msg ?>
-            <?php endif ?>
+        <section>
             <?php if ($showEdit): ?>
                 <h1><?=  $h1Tekst ?></h1>
-                <form action="deel1.php" method="GET">
-                
+                <form action="<?= $_SERVER['PHP_SELF'] ?>" method="GET">
                 <?= $editBrouwer["brnaam"] ?>
-
-                
                 <ul>
+                <li><input type="hidden" name="brouwernr" value="<?= $brouwerID ?>"></li>
                     <?php foreach ($editBrouwer as $key => $value): ?>
                         <?php if ( $key != "brouwernr" ): ?>
                              <li>
-                                <label for="brnaam"><?= $key ?></label>
-                                <input type="text" id="brnaam" name="brnaam">
+                                <label for="<?= $key ?>"><?= $key ?></label>
+                                <input type="text" id="<?= $key ?>" name="<?= $key ?>" value="<?= $value ?>">
                             </li>
                         <?php endif ?>
                     <?php endforeach ?>
                 </ul>
-                <input type="submit" name="submit">
+                <input type="submit" name="edited" value="wijzigen">
             </form>
             <?php endif ?>
-
             <h1>Overzicht van de brouwers</h1>
+            <?php if ($msg != ""): ?>
+                <?= $msg ?>
+            <?php endif ?>
             <?php if ($alertBox): ?>
                 <div class="redBox">
-                    <form action="deel1.php" method="GET">
+                    <form action="<?= $_SERVER['PHP_SELF'] ?>" method="GET">
                         <p>Bent u zeker dat u deze datarij wil verwijderen?</p>
-                        <button type="submit" name="deleteRow" value="$brouwer["brouwernr"]">Ja</button>
-                        <button type="submit">Neeeee</button>
+                        <button type="submit" name="deleted" value="<?= $brouwerID ?>">Ja</button>
+                        <button type="submit">Nee</button>
                     </form>
                 </div>
             <?php endif ?>
-            <form action="deel1.php" method="GET">
+            <form action="<?= $_SERVER['PHP_SELF'] ?>" method="GET">
                 <table>
                     <thead>
                         <tr>
@@ -151,19 +174,19 @@
                     </thead>
                     <tbody>
                         <?php foreach ($brouwers as $key => $brouwer): ?>
-                            <tr class=" <?= ($key % 2 === 0 )? "odd" : "" ?>  <?= ($brouwer["brouwernr"] === $deleteBrouwerNr)? "redBox" : "" ?>">
+                            <tr class=" <?= ($key % 2 === 0 )? "odd" : "" ?>  <?= ($brouwer["brouwernr"] == $brouwerID)? "redBox" : "" ?>">
                                 <td><?= ++$key ?></td>
                                 <?php foreach ($brouwer as $value): ?>
                                     <td><?= $value ?></td>
                                 <?php endforeach ?>
                                 <td>
-                                    <button class="btn" type="submit" name="delete" value="<?= $brouwer["brouwernr"] ?>">
+                                    <button class="deleteImage" type="submit" name="delete" value="<?= $brouwer["brouwernr"] ?>">
                                         <img src="icon-delete.png" alt="delete">
                                     </button>
                                 </td>
                                 <td>
-                                    <button class="btn" type="submit" name="edit" value="<?= $brouwer["brouwernr"] ?>">
-                                        <img src="icon-edit.png" alt="delete">
+                                    <button class="deleteImage" type="submit" name="edit" value="<?= $brouwer["brouwernr"] ?>">
+                                        <img src="icon-edit.png" alt="edit">
                                     </button>
                                 </td>
                             </tr>
