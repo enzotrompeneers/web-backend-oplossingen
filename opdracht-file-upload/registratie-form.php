@@ -7,7 +7,7 @@
     $dashboard = "dashboard.php";
 
     if (isset($_COOKIE["login"])) {
-        //header("Location: " . $dashboard);
+        header("Location: " . $dashboard);
     }
     if (isset($_SESSION["register"]["email"])) {
         $email = $_SESSION["register"]["email"];
@@ -21,7 +21,7 @@
     if (isset($_SESSION["notification"])) {
         $messages = $_SESSION["notification"];
     }
-    //unset($_SESSION['register']);
+    unset($_SESSION['register']);
     
 ?>
 <!doctype html>

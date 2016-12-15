@@ -18,11 +18,7 @@
         $statement->bindParam(':email', $email);
         $statement->execute();
         $user = $statement->fetch(PDO::FETCH_ASSOC);
-        foreach ($user as $key => $value) {
-            if ($key = "profile_picture") {
-                $profilePicture = $value;
-            }
-        }
+        $profilePicture = $user["profile_picture"];
         $hasNoProfilePicture = ($profilePicture == "");
         if ($hasNoProfilePicture) {
             $placeholder = "img/placeholder.png";
