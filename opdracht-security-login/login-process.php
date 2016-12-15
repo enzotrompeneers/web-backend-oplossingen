@@ -1,5 +1,6 @@
 <?php 
 	session_start();
+	
 	$dashboard = "dashboard.php";
     if (isset($_COOKIE["login"])) {
         header("Location: " . $dashboard);
