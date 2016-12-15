@@ -1,10 +1,11 @@
 <?php
 	$dashboard = "dashboard.php";
+	
     if (isset($_COOKIE["login"])) {
         header("Location: " . $dashboard);
     }
+    
 	$registratieForm = "registratie-form.php";
-	$dashboard = "dashboard.php";
 	session_start();
 	if (isset($_POST["generatePassword"])) {
 		$rndPassword = generatePassword(true, true, true, false, 8);
@@ -31,7 +32,7 @@
 			$servername = "localhost";
 		    $username = "root";
 		    $password = "root";
-		    $dbname = "opdracht-security-login";
+		    $dbname = "opdracht-file-upload";
         	$db = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password, array (PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
 
         	$srchQry = 'SELECT * FROM user WHERE email = :email ';

@@ -26,6 +26,7 @@
                 $editSucces = $editBrouwer = $statement->fetch( PDO::FETCH_ASSOC);           
                 $h1Tekst = "Brouwerij " . $editBrouwer["brnaam"] . " (# " . $editBrouwer["brouwernr"] . ") wijzigen";
                 $showEdit = true;
+                $brouwerID = $_GET["edit"];
             }
             else {
                 $msg = "Deze brouwerij werd niet gevonden.";
@@ -41,9 +42,11 @@
                                 omzet = :omzet
                             WHERE brouwernr = :brouwernr ' ;
             $statement = $conn->prepare($updateQuery);
-            $statement->bindParam(':brouwernr', $_GET['brouwernr']);
-            $statement->bindParam(':brnaam', $_GET['brnaam']);
+            $statement->bindValue(':brouwernr', $_GET['brouwernr']);
+            $statement->bindValue(':brnaam', $_GET['brnaam']);
             echo $_GET['brnaam'];
+
+            var_dump($_GET);
             $statement->bindParam(':adres', $_GET['adres']);
             $statement->bindParam(':postcode', $_GET['postcode']);
             $statement->bindParam(':gemeente', $_GET['gemeente']);
