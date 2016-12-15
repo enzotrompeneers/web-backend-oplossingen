@@ -15,32 +15,8 @@
 
     try {
         $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password, array (PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+
         
-        if (isset($_GET["edited"])) {
-
-            $updateQuery = 'UPDATE brouwers 
-                            SET brnaam = :brnaam,
-                                adres = :adres,
-                                postcode = :postcode,
-                                gemeente = :gemeente,
-                                omzet = :omzet
-                            WHERE brouwernr = :brouwernr';
-
-            $statement = $conn->prepare($updateQuery);
-            $statement->bindParam(':brouwernr', $_GET['brouwernr']);
-            $statement->bindParam(':brnaam', $_GET['brnaam']);
-            $statement->bindParam(':adres', $_GET['adres']);
-            $statement->bindParam(':postcode', $_GET['postcode']);
-
-            $statement->bindParam(':gemeente', $_GET['gemeente']);
-            $statement->bindParam(':omzet', $_GET['omzet']);
-            $isEdited = $statement->execute();
-            $msg = ($isEdited ? ' Aanpassing succesvol doorgevoerd.' : ' Aanpassing is niet gelukt. Probeer opnieuw of neem contact op met de <a href="mailto:trompeneers@telenet.be">systeembeheerder</a>. wanneer deze fout blijft aanhouden.');
-            
-            
-        }
-
-
         if (isset($_GET["edit"])) {
             if ($_GET["edit"] > -1) {
                 $searchQuery = 'SELECT * FROM brouwers WHERE brouwernr = :brouwerNr';
@@ -54,8 +30,29 @@
             else {
                 $msg = "Deze brouwerij werd niet gevonden.";
             }
+        }
+
+        if (isset($_GET["edited"])) {
+            $updateQuery = 'UPDATE brouwers 
+                            SET brnaam = :brnaam,
+                                adres = :adres,
+                                postcode = :postcode,
+                                gemeente = :gemeente,
+                                omzet = :omzet
+                            WHERE brouwernr = :brouwernr ' ;
+            $statement = $conn->prepare($updateQuery);
+            $statement->bindParam(':brouwernr', $_GET['brouwernr']);
+            $statement->bindParam(':brnaam', $_GET['brnaam']);
+            echo $_GET['brnaam'];
+            $statement->bindParam(':adres', $_GET['adres']);
+            $statement->bindParam(':postcode', $_GET['postcode']);
+            $statement->bindParam(':gemeente', $_GET['gemeente']);
+            $statement->bindParam(':omzet', $_GET['omzet']);
+            $isEdited = $statement->execute();
+            $msg = ($isEdited ? ' Aanpassing succesvol doorgevoerd.' : ' Aanpassing is niet gelukt. Probeer opnieuw of neem contact op met de <a href="mailto:trompeneers@telenet.be">systeembeheerder</a>. wanneer deze fout blijft aanhouden.');
             
         }
+        
 
         if (isset($_GET["delete"])) {
             $alertBox = true;
