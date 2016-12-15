@@ -1,5 +1,8 @@
 <?php
-	
+	$dashboard = "dashboard.php";
+    if (isset($_COOKIE["login"])) {
+        header("Location: " . $dashboard);
+    }
 	$registratieForm = "registratie-form.php";
 	$dashboard = "dashboard.php";
 	session_start();

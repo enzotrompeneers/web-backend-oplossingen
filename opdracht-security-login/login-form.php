@@ -1,7 +1,18 @@
 <?php
     session_start();
-    unset($_COOKIE['login']); 
+    $email = false;
+    unset($_COOKIE['login']);
+    setcookie("login", "", time()-3600);
+    unset($_COOKIE['register']);
+
+    if (isset($_SESSION['notification']["message"])) {
+        $msg = $_SESSION['notification']["message"];
+    }
     $_SESSION['notification']["message"] = "U bent uitgelogd. Tot de volgende keer";
+
+    if (isset($_SESSION['register']["email"])) {
+        $email = $_SESSION['register']["email"];
+    }
     
     
 ?>
@@ -18,11 +29,16 @@
     <body class="web-backend-opdracht">
         <section class="body">
             <h1>Inloggen</h1>
-             <form action="registratie-process.php" method="POST">
+            <?php if ($msg): ?>
+                <ul>
+                        <li><?= $msg ?></li>
+                </ul>
+            <?php endif ?>
+             <form action="login-process.php" method="POST">
                 <ul>
                     <li>
                         <label for="email">e-mail</label>
-                        <input type="text" id="email" name="email">
+                        <input type="text" id="email" name="email" value="<?= $email ?>">
                     </li>
                     <li>
                         <label for="password">paswoord</label>
@@ -31,6 +47,7 @@
                 </ul>
                 <input type="submit" name="submit" value="inloggen">
             </form>
+            <p>Nog geen account? Maak er dan eentje aan op de <a href="registratie-form.php">registratiepagina</a>.</p>
         </section>
     </body>
 </html>

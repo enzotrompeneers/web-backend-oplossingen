@@ -1,6 +1,5 @@
 <?php
     $loginForm = "login-form.php";
-    $logout = "logout.php";
     session_start();
     if (isset($_COOKIE["login"])) {
         //echo "cookie is geset " . $_COOKIE["login"];
@@ -47,7 +46,7 @@
     <body class="web-backend-opdracht">
         <section class="body">
             <h1>Dashboard</h1>
-             <a href="<?= $logout ?>">Uitloggen</a>
+             <a href="logout.php">Uitloggen</a>
         </section>
     </body>
 </html>

@@ -3,7 +3,11 @@
     $email = false;
     $password = false;
     $messages = false;
+    $dashboard = "dashboard.php";
 
+    if (isset($_COOKIE["login"])) {
+        header("Location: " . $dashboard);
+    }
     if (isset($_SESSION["register"])) {
         $email = $_SESSION["register"]["email"];
         $password = $_SESSION["register"]["password"];
