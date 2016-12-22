@@ -27,8 +27,6 @@
     } catch (PDOException $e) {
         echo "Foutboodschap: " . $e->getMessage();
     }
-
-    
 ?>
 <!doctype html>
 <html>
