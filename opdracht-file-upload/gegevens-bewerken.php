@@ -1,11 +1,8 @@
 <?php 
 	session_start();
-	echo '1';
 	try {
 		if (isset($_POST['edit'])) {
-			echo "2";
 			if (isset($_FILES['file'])) {
-				echo "3";
 				if ((($_FILES["file"]["type"] == "image/gif")
 				|| ($_FILES["file"]["type"] == "image/jpeg")
 				|| ($_FILES["file"]["type"] == "image/png"))
@@ -29,7 +26,9 @@
 						$message['text']['size'] = ( $_FILES["file"]["size"] / 1024 ) . 'kb';
 						$message['text']['tmp_filename'] = $_FILES["file"]["tmp_name"];
 						$message['text']['opgeslagen_in'] =	ROOT . "/img/" . $_FILES["file"]["name"];
-						echo '1';
+						$_SESSION['notification'] = $message['text'];
+
+						########  session notifcations bijwerken
 
 						try {
 							$email = $_POST["email"];
@@ -48,6 +47,7 @@
 			                $statement->bindValue(':profilePicture', $filename);
 					        $statement->bindValue(':email', $email);
 					        $statement->execute();
+					        $_SESSION['notification']['message'] = "Gegevens werden succesvol gewijzigd";
 					        header("Location: gegevens-wijzigen-form.php");
 					       
 					    } catch (PDOException $e) {
@@ -58,7 +58,7 @@
 			}
 		} else {
 			throw new Exception( 'Ongeldig bestand' );
-			//header("Location: gegevens-wijzigen-form.php");
+			header("Location: gegevens-wijzigen-form.php");
 		}
 	}
 	catch(Exception $e) {

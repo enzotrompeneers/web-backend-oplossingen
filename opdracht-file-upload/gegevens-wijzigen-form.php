@@ -1,5 +1,6 @@
 <?php
     session_start();
+    $msg = false;
 
     if (isset($_COOKIE["login"])) {
         $login = $_COOKIE['login'];
@@ -27,6 +28,14 @@
     } catch (PDOException $e) {
         echo "Foutboodschap: " . $e->getMessage();
     }
+
+    if (isset($_SESSION["notification"])) {
+        $notifcation = true;
+    } else {
+        $notifcation = false;
+    }
+
+    var_dump($_SESSION['notifcation']);
 ?>
 <!doctype html>
 <html>
@@ -41,6 +50,14 @@
     <body class="web-backend-opdracht">
         <section class="body">
             <h1>Opties</h1>
+            <? if ($notifcation): ?>
+                <ul>
+                    <? foreach($_SESSION['notifcation'] as $msg): ?>
+                        <li><?= $msg ?></li>
+                    <? endforeach ?>
+                </ul>
+            <? endif ?>
+
             <ul>
                 <li><a href="dashboard.php">Terug naar dashboard</a></li>
                 <li>Ingelogd als: <?= $email ?></li>
@@ -49,7 +66,7 @@
             <h1>Gegevens wijzigen</h1>
             <form action="gegevens-bewerken.php" method="POST" enctype="multipart/form-data">
                 <p>Profielfoto</p>
-                <img src="<?= $profilePicture ?>" alt="<?= $email ?>" style="width:250px;height:250px;" >
+                <img src="img/<?= $profilePicture ?>" alt="<?= $email ?>" style="width:250px;height:250px;" >
                 <label for="file">Bestand:</label>
                 <input type="file" name="file" id="file"> 
                 <label for="email">e-mail</label>
