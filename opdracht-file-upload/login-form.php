@@ -4,6 +4,7 @@
     unset($_COOKIE['login']);
     setcookie("login", "", time()-3600);
     unset($_COOKIE['register']);
+    $msg = false;
 
     if (isset($_SESSION['notification']["message"])) {
         $msg = $_SESSION['notification']["message"];
