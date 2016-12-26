@@ -20,13 +20,12 @@
 						}
 
 						move_uploaded_file($_FILES["file"]["tmp_name"], $destination.$filename);
-						$message['type']= 'success';
-						$message['text']['upload'] = $_FILES["file"]["name"];
-						$message['text']['type'] = $_FILES["file"]["type"];
-						$message['text']['size'] = ( $_FILES["file"]["size"] / 1024 ) . 'kb';
-						$message['text']['tmp_filename'] = $_FILES["file"]["tmp_name"];
-						$message['text']['opgeslagen_in'] =	ROOT . "/img/" . $_FILES["file"]["name"];
-						$_SESSION['notification'] = $message['text'];
+						$message['upload'] = $_FILES["file"]["name"];
+						$message['type'] = $_FILES["file"]["type"];
+						$message['size'] = ( $_FILES["file"]["size"] / 1024 ) . 'kb';
+						$message['tmp_filename'] = $_FILES["file"]["tmp_name"];
+						$message['opgeslagen_in'] =	ROOT . "/img/" . $_FILES["file"]["name"];
+						$_SESSION['notification'] = $message;
 
 						########  session notifcations bijwerken
 

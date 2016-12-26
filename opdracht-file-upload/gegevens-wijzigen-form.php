@@ -30,12 +30,11 @@
     }
 
     if (isset($_SESSION["notification"])) {
-        $notifcation = true;
+        $notification = true;
     } else {
-        $notifcation = false;
+        $notification = false;
     }
 
-    var_dump($_SESSION['notifcation']);
 ?>
 <!doctype html>
 <html>
@@ -50,14 +49,14 @@
     <body class="web-backend-opdracht">
         <section class="body">
             <h1>Opties</h1>
-            <? if ($notifcation): ?>
+            <?php if ($notification): ?>
                 <ul>
-                    <? foreach($_SESSION['notifcation'] as $msg): ?>
-                        <li><?= $msg ?></li>
-                    <? endforeach ?>
+                    <?php foreach($_SESSION['notification'] as $name => $value): ?>
+                        <li><?= $name ?>: <?= $value ?></li>
+                    <?php endforeach ?>
                 </ul>
-            <? endif ?>
-
+            <?php endif ?>
+            <br>
             <ul>
                 <li><a href="dashboard.php">Terug naar dashboard</a></li>
                 <li>Ingelogd als: <?= $email ?></li>
