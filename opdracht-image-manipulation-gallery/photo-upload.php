@@ -24,8 +24,8 @@
                 createThumb($pictureFile, $fileName, $ext);
                  $_SESSION['messages'] = "uploaden afbeelding en thumbmail is gelukt";
                 
-                
-
+                $hashedNamed = $fileName.'.'.$ext;
+                 insertDatabase($hashedNamed);
 
             } else {
                 $_SESSION['messages'] = "bestand ongeldig!";
@@ -59,6 +59,29 @@
         $squareLength = ($width<$height ? $width : $height);
         imagecopyresized($thumb, $source, 0,0,0,0, $thumbnailW, $thumbnailH, $squareLength, $squareLength);
         imagejpeg($thumb, ('uploads/img/thumbs/'.$fileName.'_thumbs.'.$ext), 100);
+    }
+
+    function insertDatabase ($hashedNamed) {
+        $servername = "localhost";
+        $username = "root";
+        $password = "root";
+        $dbname = "opdracht-gallery";
+        try {
+            $title = $_POST['title'];
+            $caption = $_POST['caption'];
+            $db = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password, array (PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+            $insertQry = "INSERT INTO gallery (file_name, title, caption, is_archived)
+                            VALUES ('$hashedNamed', '$title', '$caption', '1')";
+            $statement = $db->prepare($insertQry);
+            $statement->execute();
+            $_SESSION['notification']['message'] = "insert db succesvol";
+            header("Location: photo-upload-form.php");
+           
+        } catch (PDOException $e) {
+            $_SESSION['messages'] ="Foutboodschap: " . $e->getMessage();
+            header("Location: photo-upload-form.php");
+        }
+        
     }
 	
 
