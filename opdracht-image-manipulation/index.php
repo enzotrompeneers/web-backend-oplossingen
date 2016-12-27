@@ -10,8 +10,9 @@
 			&& ($picture["size"] < 5000000)) {
 
 				pictureToFile($pictureName);
-				convertToJpeg($pictureName);
-
+				list($folderFileNameExt, $source, $fileName) = convertToJpeg($pictureName);
+				cropImage($folderFileNameExt, $source, $fileName);
+				$msg = "foto geconverteerd, gecropt en opgeslagen!";
 
 			} else {
 				$msg = "ongeldig bestand";
@@ -45,8 +46,20 @@
 				$source = imagecreatefromgif($folder.$picture);
 				break;
 		}
-		imagejpeg($source, $folder.$fileName.'.jpeg', 70);
-		imagedestroy($source);
+		$folderFileNameExt = $folder.$fileName.'.jpeg';
+		imagejpeg($source, $folderFileNameExt, 70);
+		return array($folderFileNameExt, $source, $fileName);
+	}
+
+	function cropImage ($picture, $source, $fileName) {
+		$thumbnailW = 100;
+		$thumbnailH = 100;
+		$thumb = imagecreatetruecolor($thumbnailW, $thumbnailH);
+		list($width, $height) = getimagesize($picture);
+		// echo ' w '.$width; echo ' h '.$height;
+		$squareLength = ($width<$height ? $width : $height);
+		imagecopyresized($thumb, $source, 0,0,0,0, $thumbnailW, $thumbnailH, $squareLength, $squareLength);
+		imagejpeg($thumb, ('img/thumb-'.$fileName.'.jpeg'), 100);
 	}
 
 	
