@@ -18,13 +18,14 @@
                 while (file_exists($destination.$fileName)) { 
                      $fileName = generateUniqueName($pictureName);
                 }
-                $pictureFile = $destination.$fileName.'.'.$ext;
+                $hashedNamed = $fileName.'.'.$ext;
+                $pictureFile = $destination.$hashedNamed;
                 move_uploaded_file($picture["tmp_name"], $pictureFile); 
 
                 createThumb($pictureFile, $fileName, $ext);
                  $_SESSION['messages'] = "uploaden afbeelding en thumbmail is gelukt";
                 
-                $hashedNamed = $fileName.'.'.$ext;
+                
                  insertDatabase($hashedNamed);
 
             } else {
@@ -74,7 +75,7 @@
                             VALUES ('$hashedNamed', '$title', '$caption', '1')";
             $statement = $db->prepare($insertQry);
             $statement->execute();
-            $_SESSION['notification']['message'] = "insert db succesvol";
+            $_SESSION['messages'] = "insert db succesvol";
             header("Location: photo-upload-form.php");
            
         } catch (PDOException $e) {
