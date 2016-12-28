@@ -47,7 +47,7 @@
 			</a>
 			<figcaption><?= $picture['caption'] ?></figcaption>
 			<form action="photo-delete.php" method="POST">
-				<input type="hidden" name="id" value="<?= $$picture['id'] ?>">
+				<input type="hidden" name="id" value="<?= $picture['id'] ?>">
 				<input type="hidden" name="file_name" value="<?= $picture['file_name'] ?>">
 				<input type="submit" name="submit" value="Verwijderen">
 			</form><hr>
