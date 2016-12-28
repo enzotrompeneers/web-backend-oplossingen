@@ -39,7 +39,7 @@
 		$servername = "localhost";
         $username = "root";
         $password = "root";
-        $dbname = "opdracht-mail";
+        $dbname = "opdracht-ajax";
         try {
             $db = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password, array (PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
             $insertQry = "INSERT INTO contact_messages (email, message, time_sent)
