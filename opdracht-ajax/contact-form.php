@@ -5,17 +5,12 @@
         $email = $_SESSION['form']['email'];
         $message = $_SESSION['form']['message'];
         $copy = $_SESSION['form']['copy'];
-        echo $message;
     }
 
     if (isset($_SESSION['notification'])) {
         $notification = $_SESSION['notification'];
         unset($_SESSION['notification']);
     }
-
-
-    
-
 ?>
 
 <!doctype html>
@@ -36,7 +31,7 @@
                     <li><?= $notification ?></li>
                 </ul>
             <?php endif ?>
-            <form action="contact.php" method="POST">
+            <form action="contact.php" method="POST" id="form" >
                 <ul>
                     <li>
                         <label for="email">E-mailadres</label>
@@ -53,6 +48,28 @@
                 </ul>
                 <input type="submit" name="submit">
             </form>
+            <div class="placeholder"></div>
         </section>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+        <script>
+            $(function(){
+                $('#form').submit(function(){
+                    var formData = $('#form').serialize(); // zet automatisch alle inpurvelden om naar nodige formaat om doorgestuurd te kunnen worden
+                    console.log('formData:' + formData);
+
+                    $.ajax({ // ajax request
+                        type: 'POST',
+                        url: 'contact-API.php',
+                        data: formData,
+                        success: function(data) {
+                            parsedData = JSON.parse(data);
+                            $('.placeholder').append('<p>' + parsedData['type'] + '<p>');
+                        }
+                    });
+                    return false; // form mag niet automatisch verstuurd worden
+                })
+        })
+        </script>
     </body>
 </html>
+
