@@ -1,4 +1,9 @@
 <?php
+	$messages = false;
+    if (isset($_SESSION['messages'])) {
+        $messages = $_SESSION['messages'];
+       
+    }
 	try {
 		$servername = "localhost";
         $username = "root";
@@ -8,9 +13,17 @@
         $srchQry = 'SELECT * FROM gallery WHERE is_archived = 1';
         $statement = $db->prepare($srchQry);
         $statement->execute();
+        $pictures = false;
         while ($row = $statement->fetch(PDO::FETCH_ASSOC)) { // fetchAssoc !!! fetchRow geeft telkens een nummer!!!
         	$pictures[] = $row;
     	}
+
+    	if ($pictures) {
+    		$picturesInGallery = true;
+    	} else {
+    		$picturesInGallery = false;
+    	}
+
     } catch (PDOException $e) {
     	echo "Foutboodschap: " . $e->getMessage();
 	}
@@ -39,19 +52,25 @@
 	<section class="body">
 
 		<h1>Fotogallerij</h1>
-
+		<?php if($messages): ?>
+            <ul>
+                <li><?= $messages ?></li>
+            </ul>
+        <?php endif ?>
 		<a href="photo-upload-form.php">Foto toevoegen</a><br><br>
-		<?php foreach($pictures as $picture): ?>
-			<a href="uploads/img/<?= $picture['file_name'] ?>">
-				<img src="<?= getThumbnailPicture($picture['file_name']) ?>" alt="<?= $picture['title'] ?>"><br>
-			</a>
-			<figcaption><?= $picture['caption'] ?></figcaption>
-			<form action="photo-delete.php" method="POST">
-				<input type="hidden" name="id" value="<?= $picture['id'] ?>">
-				<input type="hidden" name="file_name" value="<?= $picture['file_name'] ?>">
-				<input type="submit" name="submit" value="Verwijderen">
-			</form><hr>
-		<?php endforeach ?>
+		<?php if($picturesInGallery): ?>
+			<?php foreach($pictures as $picture): ?>
+				<a href="uploads/img/<?= $picture['file_name'] ?>">
+					<img src="<?= getThumbnailPicture($picture['file_name']) ?>" alt="<?= $picture['title'] ?>"><br>
+				</a>
+				<figcaption><?= $picture['caption'] ?></figcaption>
+				<form action="photo-delete.php" method="POST">
+					<input type="hidden" name="id" value="<?= $picture['id'] ?>">
+					<input type="hidden" name="file_name" value="<?= $picture['file_name'] ?>">
+					<input type="submit" name="submit" value="Verwijderen">
+				</form><hr>
+			<?php endforeach ?>
+		<?php endif ?>
 	</section>
 
 </body>
