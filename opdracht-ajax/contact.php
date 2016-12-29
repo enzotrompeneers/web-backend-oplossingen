@@ -1,5 +1,10 @@
 <?php
 	session_start();
+
+	function __autoload($className) { 
+        include_once "classes/" . $className . ".php";
+    }
+
 	if (isset($_POST['submit'])) {
 		$email = $_POST['email'];
 		$message = $_POST['message'];
@@ -12,23 +17,17 @@
 		if (!$email || !$message) {
 			$_SESSION['notification'] = "niet alle velden zijn ingevuld";
 			header('location: contact-form.php');
+		} else {
+			$send = new SendForm();
+			$send->insertDatabase($email, $message);
+			$send->mailTo($email, $message, $copy);
+
+			$_SESSION['notification'] = "mail is verzonden";
+			unset($_SESSION['form']);
+	        header("Location: contact-form.php");
 		}
 
-		$admin = "trompeneers@telenet.be";
-		$headers = 'From: '. $email;
-		//$headers .=	'Reply-To: ' . $email  . "\r\n";
-		//$headers .= 'MIME-Version: 1.0'. "\r\n";
-		//$headers .= 'Content-Type: text/html; charset=ISO-8859-1';
-
-		insertDatabase($email, $message);
-		if ($copy) {
-			mail( $email, $message, $message, $headers );
-		} 
-
-		mail( $admin, $message, $message, $headers );
-		$_SESSION['notification'] = "mail is verzonden";
-		unset($_SESSION['form']);
-        header("Location: contact-form.php");
+		
 
 
 		

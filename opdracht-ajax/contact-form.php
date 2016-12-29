@@ -1,5 +1,8 @@
 <?php
     session_start();
+    function __autoload($className) { 
+        include_once "classes/" . $className . ".php";
+    }
 
     if (isset($_SESSION['form'])) {
         $email = $_SESSION['form']['email'];
@@ -63,7 +66,16 @@
                         data: formData,
                         success: function(data) {
                             parsedData = JSON.parse(data);
-                            $('.placeholder').append('<p>' + parsedData['type'] + '<p>');
+                            if (parsedData['type'] == 'succes') {
+                                
+                                $('#form').fadeOut('slow', function(){
+                                    $('.placeholder').append('<p>Bedankt! Uw bericht is goed verzonden!</p>').hide().fadeIn('slow');
+                                });
+
+                            } else {
+                                $('.placeholder').prepend('<p>Oeps, er ging iets mis. Probeer opnieuw!</p>').hide().fadeIn('slow');
+                            }
+                            //$('.placeholder').append('<p>' + parsedData['type'] + '<p>');
                         }
                     });
                     return false; // form mag niet automatisch verstuurd worden
