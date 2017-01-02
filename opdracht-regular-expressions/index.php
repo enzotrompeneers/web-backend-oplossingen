@@ -7,6 +7,8 @@
         if (!$error) {
              $ingevuld = ($regex && $string)? htmlspecialchars(preg_replace('/'.$regex.'/', $vervang, $string)) : false;
         }
+
+
     }
 ?>
 
@@ -46,6 +48,21 @@
             </form>
             <p><?= (isset($error)? $error : "") ?></p>
             <p><?= (isset($ingevuld)? $ingevuld : "") ?></p>
+
+            <br>
+            <h1>Deel 2</h1>
+            <p>
+                <?= preg_replace('/[aduzADUZ]/', $vervang, "Memory can change the shape of a room; it can change the color of a car. And memories can be distorted. They're just an interpretation, they're not a record, and they're irrelevant if you have the facts.") ?>
+            </p>
+            <p>
+                <?= preg_replace('/colou?r/', $vervang, "Zowel colour als color zijn correct Engels") ?>
+            </p>
+            <p>
+                <?= preg_replace('/1\d{3}/', $vervang, "1020 1050 9784 1560 0231 1546 8745") ?>
+            </p>
+            <p>
+                <?= preg_replace('/24[\/\-\.]07[\/\-\.]1978/', $vervang, "24/07/1978 en 24-07-1978 en 24.07.1978") ?>
+            </p>
         </section>
     </body>
 </html>
