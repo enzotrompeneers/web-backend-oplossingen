@@ -1,10 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Welcome to the homepage, {{$name}}</h1>
-</body>
-</html>
+@extends('app')
+
+@section('content')
+<h1>Welcome to the homepage, {{$name}}</h1>
+@stop
