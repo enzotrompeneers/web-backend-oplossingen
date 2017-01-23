@@ -13,23 +13,16 @@
         body {
             font-family: 'Lato';
         }
-
         .fa-btn {
             margin-right: 6px;
         }
-
         [class^='bg-'] {
-            
             padding:12px;
             border-radius:4px;
             border:1px solid rgba(0,0,0,0.1);
-
             margin:12px 0;
-            
         }
-
-        button
-        {
+        button {
             margin:0;
             padding:0;
             background-color:transparent;
@@ -37,92 +30,70 @@
             display: inline-block;
             text-align: center;
         }
-
-        .comments
-        {
+        .comments {
             padding:32px 0;
         }
-
         .comment-body {
-                white-space: pre-wrap;
+            white-space: pre-wrap;
         }
-
         .comments li {
             margin: 16px 0 32px 0;
         }
-
         .comment-info {
             border-top: 1px solid #eee;
             margin-top:6px;
             padding-top:6px;
             font-size:10px;
         }
-
         .article-overview .fa-btn { 
-            
             margin-left:6px;
-
         }
-
-        .form-inline { display:block;height:24px; }
-
+        .form-inline { 
+            display:block;
+            height:24px; 
+        }
         .article-overview {
             list-style-type: none;
             padding: 0px;
         }
-
-        .article-overview li
-        {
+        .article-overview li {
             padding: 8px 0;
         }
-
         .urlTitle {
             font-size: 24px;
         }
-
         .disabled {
             color:lightgrey;
         }
-
         .vote {
             float:left;
             height:48px;
             margin-right:4px;
             position: relative;
         }
-
         .vote .fa-btn {
             font-size:18px;
         }
-
-        .downvote i, .downvote button
-        {
+        .downvote i, .downvote button {
             display: block;
             position:absolute;
             bottom:0;
         }
-
         .breadcrumb {
             padding-left:0;
             margin-bottom: 16px;
             background-color:transparent;
         }
-
         .panel-content {
-
             padding:32px;
         }
-
-        .edit-btn
-        {
+        .edit-btn {
             margin-left:8px;
             padding:0 4px;
         }
-
         .info {
             font-size:10px;
         }
-
     </style>
 </head>
 <body id="app-layout">
@@ -150,58 +121,13 @@
                 <!-- Right Side Of Navbar -->
                 <ul class="nav navbar-nav navbar-right">
                     <!-- Authentication Links -->
-                        <li><a href="http://pascalculator.be/hackernews/public/login">Login</a></li>
-                        <li><a href="http://pascalculator.be/hackernews/public/register">Register</a></li>
+                    <li><a href="http://pascalculator.be/hackernews/public/login">Login</a></li>
+                    <li><a href="http://pascalculator.be/hackernews/public/register">Register</a></li>
                 </ul>
             </div>
         </div>
     </nav>
-    <div class="container">
-    <div class="row">
-        <div class="col-md-10 col-md-offset-1">
-            <div class="panel panel-default">
-                <div class="panel-heading">Article overview</div>
-                    <div class="panel-content">
-                        <ul class="article-overview">
-                            <li>
-                                <div class="vote">                
-                                    <div class="form-inline upvote">
-                                        <i class="fa fa-btn fa-caret-up disabled upvote" title="You need to be logged in to upvote"></i>
-                                    </div>
-                                    <div class="form-inline upvote">
-                                        <i class="fa fa-btn fa-caret-down disabled downvote" title="You need to be logged in to downvote"></i>
-                                    </div>
-                                </div>
-                                <div class="url">
-                                    <a href="http://arstechnica.com/gaming/2016/07/scythe-the-most-hyped-board-game-of-2016-delivers/" class="urlTitle">Scythe, the most-hyped board game of 2016, delivers</a>
-                                </div> 
-                                <div class="info">
-                                    7 points  | posted by Tomte | <a href="comments/1">4 comments</a>
-                                </div>
-                            </li>
-
-                            <li>
-                                <div class="vote">
-                                    <div class="form-inline upvote">
-                                        <i class="fa fa-btn fa-caret-up disabled upvote" title="You need to be logged in to upvote"></i>
-                                    </div>
-                                    <div class="form-inline upvote">
-                                        <i class="fa fa-btn fa-caret-down disabled downvote" title="You need to be logged in to downvote"></i>
-                                    </div>
-                                </div>
-                                <div class="url">
-                                    <a href="https://blog.mozilla.org/security/2016/08/01/enhancing-download-protection-in-firefox/" class="urlTitle">Enhancing Download Protection in Firefox</a>
-                                </div> 
-                                <div class="info">
-                                    3 points  | posted by eto3 | <a href="comments/4">2 comments</a>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    @yield('content');
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js" integrity="sha384-I6F5OKECLVtK/BL+8iSLDEHowSAfUo76ZL9+kGAgTRdiByINKJaqTPH/QVNS1VDb" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
     </body>
