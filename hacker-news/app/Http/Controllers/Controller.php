@@ -37,14 +37,20 @@ class Controller extends BaseController
     // -------------- comments --------------
     public function showComments($articleID) {
     	$article = Article::find($articleID);
+    	if (!$article) {
+    		abort(404);
+    	}
         return view('pages.addComment', compact('article'));
     }
 
     public function addComment($articleID) {
     	$article = Article::find($articleID);
+    	if (!$article) {
+    		abort(404);
+    	}
     	// add comment here
-        return view('pages.addComment', compact('article'));
-    }
+        
+    }return view('pages.addComment', compact('article'));
 
     public function editComment($commentID) {
     	// edit comment here
