@@ -11,8 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
-Route::get('home', 'Controller@home'); 
+Route::get('/', 'Controller@home');
+Route::get('home', 'Controller@home');
+Route::get('article/add', 'Controller@add');
+Route::get('article/edit/[0-9]*', 'Controller@edit');
+Route::get('comments/[0-9]*', 'Controller@home');
