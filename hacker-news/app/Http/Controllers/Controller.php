@@ -7,13 +7,15 @@ use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
+use App\Article;
+
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
     public function home() {
-        $name = 'Enzo Trompeneers';
-        return view('pages.home', compact('name'));
+        $articles = Article::all();
+        return view('pages.home', compact('articles'));
     }
 
     public function addArticle() {
