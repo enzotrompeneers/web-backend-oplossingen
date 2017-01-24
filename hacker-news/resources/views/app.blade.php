@@ -114,14 +114,14 @@
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
-                    <li><a href="home">Home</a></li>
-                    <li><a href="article/add">Add article</a></li>
+                    <li><a href="../home">Home</a></li>
+                    <li><a href="../article/add">Add article</a></li>
                 </ul>
                 <!-- Right Side Of Navbar -->
                 <ul class="nav navbar-nav navbar-right">
                     <!-- Authentication Links -->
-                    <li><a href="login">Login</a></li>
-                    <li><a href="register">Register</a></li>
+                    <li><a href="../login">Login</a></li>
+                    <li><a href="../register">Register</a></li>
                 </ul>
             </div>
         </div>
