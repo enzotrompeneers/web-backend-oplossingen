@@ -10,7 +10,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading clearfix">
                     Article: {{$article->title}}
-                    <a href="article/delete/{{$article->id}}" class="btn btn-danger btn-xs pull-right">
+                    <a href="#" class="btn btn-danger btn-xs pull-right">
                         <i class="fa fa-btn fa-trash" title="delete"></i> delete article
                     </a>
                 </div>
@@ -25,7 +25,7 @@
                     </div>
                     <div class="url">
                         <a href="{{$article->url}}" class="urlTitle">{{$article->title}}</a>                            
-                        <a href="article/edit{{$article->id}}" class ="btn btn-primary btn-xs edit-btn">edit</a>
+                        <a href="../article/edit/{{$article->id}}" class ="btn btn-primary btn-xs edit-btn">edit</a>
                     </div> 
                     <div class="info">
                         0 points  | posted by enzo | 1 comment
@@ -36,8 +36,8 @@
                                 <div class="comment-body">test</div>
                                 <div class="comment-info">
                                     Posted by enzo on 2017-01-24 16:51:01                        
-                                    <a href="comments/edit/{{$article->id}}" class ="btn btn-primary btn-xs edit-btn">edit</a>
-                                    <a href="comments/delete/{{$article->id}}" class ="btn btn-danger btn-xs edit-btn">
+                                    <a href="../comments/edit/{{$article->id}}" class ="btn btn-primary btn-xs edit-btn">edit</a>
+                                    <a href="../comments/delete/{{$article->id}}" class ="btn btn-danger btn-xs edit-btn">
                                         <i class="fa fa-btn fa-trash" title="delete"></i> delete 
                                     </a>                                    
                                 </div>
@@ -45,8 +45,8 @@
                         </ul>
                     </div>
                     <!-- New Task Form -->
-                    <form action="comments/add" method="POST" class="form-horizontal">
-                        <input type="hidden" name="_token" value="3IWyHkqiw8VnsOzKdGYxd4cSuqdDREqvYW7uKe93">
+                    <form action="../../comments/add/{{$article->id}}" method="POST" class="form-horizontal">
+                        <input type="hidden" name="_token" value="{{csrf_token()}}">
                         <!-- Comment data -->
                         <div class="form-group">
                             <label for="comment" class="col-sm-3 control-label">Comment</label>

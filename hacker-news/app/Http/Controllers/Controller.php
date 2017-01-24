@@ -13,6 +13,7 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
+    // -------------- articles --------------
     public function home() {
         $articles = Article::all();
         return view('pages.home', compact('articles'));
@@ -22,19 +23,41 @@ class Controller extends BaseController
         return view('pages.addArticle');
     }
 
-    public function editArticle() {
+    public function editArticle($articleID) {
+    	// edit article here
         return view('pages.editArticle');
     }
 
-    public function addComment($articleID) {
+    public function deleteArticle($articleID) {
+    	// delete article here
+        return view('pages.editArticle');
+    }
+    // ----------- end articles -------------
+
+    // -------------- comments --------------
+    public function showComments($articleID) {
     	$article = Article::find($articleID);
         return view('pages.addComment', compact('article'));
     }
 
-    public function editComment() {
+    public function addComment($articleID) {
+    	$article = Article::find($articleID);
+    	// add comment here
+        return view('pages.addComment', compact('article'));
+    }
+
+    public function editComment($commentID) {
+    	// edit comment here
         return view('pages.editComment');
     }
 
+    public function deleteComment($commentID) {
+    	// delete comment here
+        return view('pages.editComment');
+    }
+    // ------------ end comments -------------
+
+    // ---------- login and register ---------
     public function login() {
         return view('pages.login');
     }
@@ -42,4 +65,5 @@ class Controller extends BaseController
     public function register() {
         return view('pages.register');
     }
+    // ------- end login and register --------
 }
