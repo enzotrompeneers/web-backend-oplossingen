@@ -27,8 +27,8 @@ class Controller extends BaseController
     }
 
     public function addComment($articleID) {
-    	return $articleID;
-        //return view('pages.addComment');
+    	$article = Article::find($articleID);
+        return view('pages.addComment', compact('article'));
     }
 
     public function editComment() {
