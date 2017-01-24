@@ -107,21 +107,21 @@
                     <span class="icon-bar"></span>
                 </button>
                 <!-- Branding Image -->
-                <a class="navbar-brand" href="http://pascalculator.be/hackernews/public">
+                <a class="navbar-brand" href="/">
                     Hackernews.local
                 </a>
             </div>
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
-                    <li><a href="http://pascalculator.be/hackernews/public/home">Home</a></li>
-                    <li><a href="http://pascalculator.be/hackernews/public/instructies">Instructies</a></li>
+                    <li><a href="home">Home</a></li>
+                    <li><a href="article/add">Add article</a></li>
                 </ul>
                 <!-- Right Side Of Navbar -->
                 <ul class="nav navbar-nav navbar-right">
                     <!-- Authentication Links -->
-                    <li><a href="http://pascalculator.be/hackernews/public/login">Login</a></li>
-                    <li><a href="http://pascalculator.be/hackernews/public/register">Register</a></li>
+                    <li><a href="login">Login</a></li>
+                    <li><a href="register">Register</a></li>
                 </ul>
             </div>
         </div>
