@@ -22,7 +22,7 @@
                                         <a href="{{$article->url}}" class="urlTitle">{{$article->title}}</a>
                                     </div> 
                                     <div class="info">
-                                        7 points  | posted by Tomte | <a href="comments/1">4 comments</a>
+                                        7 points  | posted by Tomte | <a href="comments/{{$article->id}}">4 comments</a>
                                     </div>
                                 </li>
                             @endforeach

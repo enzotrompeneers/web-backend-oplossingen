@@ -26,8 +26,9 @@ class Controller extends BaseController
         return view('pages.editArticle');
     }
 
-    public function addComment() {
-        return view('pages.addComment');
+    public function addComment($articleID) {
+    	return $articleID;
+        //return view('pages.addComment');
     }
 
     public function editComment() {
