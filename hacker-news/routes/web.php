@@ -20,3 +20,6 @@ Route::get('article/edit/{article}', 'Controller@editArticle');
 
 Route::get('comments/{article}', 'Controller@addComment');
 Route::get('comments/edit/{comment}', 'Controller@editComment');
+
+Route::get('login', 'Controller@login');
+Route::get('register', 'Controller@register');
