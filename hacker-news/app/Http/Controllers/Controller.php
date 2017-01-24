@@ -31,4 +31,12 @@ class Controller extends BaseController
     public function editComment() {
         return view('pages.editComment');
     }
+
+    public function login() {
+        return view('pages.login');
+    }
+
+    public function register() {
+        return view('pages.register');
+    }
 }
