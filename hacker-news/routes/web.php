@@ -14,6 +14,9 @@
 
 Route::get('/', 'Controller@home');
 Route::get('home', 'Controller@home');
-Route::get('article/add', 'Controller@add');
-Route::get('article/edit/[0-9]*', 'Controller@edit');
-Route::get('comments/[0-9]*', 'Controller@home');
+
+Route::get('article/add', 'Controller@addArticle');
+Route::get('article/edit/{article}', 'Controller@editArticle');
+
+Route::get('comments/{article}', 'Controller@addComment');
+Route::get('comments/edit/{comment}', 'Controller@editComment');

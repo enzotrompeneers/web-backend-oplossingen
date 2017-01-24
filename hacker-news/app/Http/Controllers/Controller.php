@@ -15,4 +15,20 @@ class Controller extends BaseController
         $name = 'Enzo Trompeneers';
         return view('pages.home', compact('name'));
     }
+
+    public function addArticle() {
+        return view('pages.addArticle');
+    }
+
+    public function editArticle() {
+        return view('pages.editArticle');
+    }
+
+    public function addComment() {
+        return view('pages.addComment');
+    }
+
+    public function editComment() {
+        return view('pages.editComment');
+    }
 }
