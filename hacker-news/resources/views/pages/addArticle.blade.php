@@ -10,6 +10,9 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Add article</div>
                     <div class="panel-content">
+                    {!! Form::open()!!}
+                    
+                    {!! Form::close()!!}
                     </div>
                 </div>
             </div>
