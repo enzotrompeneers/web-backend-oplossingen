@@ -17,6 +17,8 @@ Route::get('home', 'Controller@home');
 
 Route::get('article/add', 'Controller@addArticle');
 Route::get('article/edit/{articleID}', 'Controller@editArticle');
+Route::get('article}', 'Controller@deleteArticle');
+Route::get('article/{articleID}', 'Controller@deleteArticle');
 Route::get('article/delete/{articleID}', 'Controller@deleteArticle');
 
 

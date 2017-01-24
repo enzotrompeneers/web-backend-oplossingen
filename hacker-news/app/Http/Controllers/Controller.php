@@ -43,8 +43,8 @@ class Controller extends BaseController
     public function addComment($articleID) {
     	$article = Article::findOrFail($articleID);
     	// add comment here
-        
-    }return view('pages.addComment', compact('article'));
+        return view('pages.addComment', compact('article'));
+    }
 
     public function editComment($commentID) {
     	// edit comment here
