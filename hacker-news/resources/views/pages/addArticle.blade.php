@@ -36,10 +36,7 @@
                         <br><br>
                         <div class="form-group">
                             <div class="col-sm-offset-3 col-sm-6">
-                                <button type="submit" class="btn btn-default">
-                                    <i class="fa fa-plus"></i> Add Article
-                                </button>
-                            </div>
+                                {!! Form::submit('Add Article', ['class'=> 'btn btn-default']) !!}
                         </div>
                     {!! Form::close()!!}
                 </div>
