@@ -4,7 +4,15 @@
 <div class="container">
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
-            <!-- show errors here -->
+            <!-- show error
+            <div class="alert alert-danger">
+                <strong>Whoops! Something went wrong!</strong>
+                <br><br>
+                <ul>
+                    <li>The title field is required.</li>
+                    <li>The url field is required.</li>
+                </ul>
+            </div> -->
             <div class="breadcrumb">
                 <a href="../home">← back to overview</a>
             </div>
