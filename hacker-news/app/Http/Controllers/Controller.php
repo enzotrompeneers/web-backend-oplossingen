@@ -15,34 +15,6 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-    // -------------- articles --------------
-    public function home() {
-        $articles = Article::latest()->get();
-        return view('pages.home', compact('articles'));
-    }
-
-    public function addArticle() {
-        return view('pages.addArticle');
-    }
-
-    public function saveArticle() {
-    	$input = Request::all();
-    	$input['published_at'] = Carbon::now();
-    	Article::create($input);
-        return redirect('/');
-    }
-
-    public function editArticle($articleID) {
-    	// edit article here
-        return view('pages.editArticle');
-    }
-
-    public function deleteArticle($articleID) {
-    	// delete article here
-        return view('pages.editArticle');
-    }
-    // ----------- end articles -------------
-
     // -------------- comments --------------
     public function showComments($articleID) {
     	$article = Article::findOrFail($articleID);
