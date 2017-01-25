@@ -15,29 +15,6 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-    // -------------- comments --------------
-    public function showComments($articleID) {
-    	$article = Article::findOrFail($articleID);
-        return view('pages.addComment', compact('article'));
-    }
-
-    public function addComment($articleID) {
-    	$article = Article::findOrFail($articleID);
-    	// add comment here
-        return view('pages.addComment', compact('article'));
-    }
-
-    public function editComment($commentID) {
-    	// edit comment here
-        return view('pages.editComment');
-    }
-
-    public function deleteComment($commentID) {
-    	// delete comment here
-        return view('pages.editComment');
-    }
-    // ------------ end comments -------------
-
     // ---------- login and register ---------
     public function login() {
         return view('pages.login');
