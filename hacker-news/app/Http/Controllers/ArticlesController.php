@@ -32,8 +32,8 @@ class ArticlesController extends Controller
     }
 
     public function edit($articleID) {
-    	// edit article here
-        return view('pages.editArticle');
+    	$article = Article::findOrFail($articleID);
+        return view('pages.editArticle', compact('article'));
     }
 
     public function destroy($articleID) {

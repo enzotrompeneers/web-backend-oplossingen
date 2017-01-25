@@ -11,12 +11,13 @@
 |
 */
 
-// Route::resource('articles', 'ArticlesController');
+Route::resource('articles', 'ArticlesController');
 Route::get('/', 'ArticlesController@show');
 Route::post('/', 'ArticlesController@store');
 Route::get('home', 'ArticlesController@show');
 Route::get('article/add', 'ArticlesController@create');
 Route::get('article/edit/{articleID}', 'ArticlesController@edit');
+
 
 Route::get('article}', 'ArticlesController@deleteArticle');
 Route::get('article/{articleID}', 'ArticlesController@deleteArticle');
