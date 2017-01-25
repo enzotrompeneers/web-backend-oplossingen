@@ -8,6 +8,11 @@ class Article extends Model {
 
 	protected $fillable = [ // mass assigned, those the user can change
 		'title',
-		'url'
+		'url',
+		'userID' // temp
 	];
+
+	public function user() {
+		return $this->belongsTo('App\User');
+	}
 }

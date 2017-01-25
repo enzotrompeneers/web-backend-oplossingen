@@ -16,11 +16,11 @@ class Controller extends BaseController
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
     // ---------- login and register ---------
-    public function login() {
-        return view('pages.login');
+    public function showLoginForm() {
+        return view('auth.login');
     }
 
-    public function register() {
+    public function showRegisterForm() {
         return view('pages.register');
     }
     // ------- end login and register --------

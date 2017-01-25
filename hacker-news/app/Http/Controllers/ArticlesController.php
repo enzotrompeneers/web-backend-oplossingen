@@ -11,6 +11,7 @@ use App\Article;
 use Carbon\Carbon;
 use App\Http\Requests\ArticleRequest;
 use Illuminate\Http\Request;
+use Auth;
 
 class ArticlesController extends Controller
 {
@@ -27,6 +28,7 @@ class ArticlesController extends Controller
     public function store(ArticleRequest $request) {
     	$input = $request->all();
     	$input['published_at'] = Carbon::now();
+        Auth::user();
     	
     	Article::create($input);
         return redirect('/');

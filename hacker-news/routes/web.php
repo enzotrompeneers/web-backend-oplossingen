@@ -32,5 +32,18 @@ Route::post('comments/add/{articleID}', 'CommentsController@addComment');
 Route::get('comments/edit/{commentID}', 'CommentsController@editComment');
 Route::get('comments/delete/{commentID}', 'CommentsController@deleteComment');
 
-Route::get('login', 'Controller@login');
-Route::get('register', 'Controller@register');
+/*
+Route::controllers([
+    'login' => 'Auth\LoginController',
+    'register' => 'Auth\RegisterController',
+]);
+*/
+//Route::get('login', 'Auth\LoginController');
+//Route::get('register', 'Controller@register');
+
+Auth::routes();
+
+//Route::get('/home', 'HomeController@index');
+
+Route::get('login', 'Controller@showLoginForm');
+Route::get('register', 'Controller@showRegisterForm');
