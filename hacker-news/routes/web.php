@@ -33,7 +33,7 @@ Route::get('comments/edit/{commentID}', 'CommentsController@editComment');
 Route::get('comments/delete/{commentID}', 'CommentsController@deleteComment');
 
 /*
-Route::controllers([
+Route::controller([
     'login' => 'Auth\LoginController',
     'register' => 'Auth\RegisterController',
 ]);

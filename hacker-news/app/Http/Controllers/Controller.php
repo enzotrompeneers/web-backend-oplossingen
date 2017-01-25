@@ -21,7 +21,7 @@ class Controller extends BaseController
     }
 
     public function showRegisterForm() {
-        return view('pages.register');
+        return view('auth.register');
     }
     // ------- end login and register --------
 }
