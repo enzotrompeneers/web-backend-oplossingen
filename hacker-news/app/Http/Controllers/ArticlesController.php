@@ -14,16 +14,16 @@ use App\Http\Requests\CreateArticleRequest;
 class ArticlesController extends Controller
 {
     // -------------- articles --------------
-    public function home() {
+    public function show() {
         $articles = Article::latest()->get();
         return view('pages.home', compact('articles'));
     }
 
-    public function addArticle() {
+    public function create() {
         return view('pages.addArticle');
     }
 
-    public function saveArticle(CreateArticleRequest $request) {
+    public function store(CreateArticleRequest $request) {
     	$input = $request->all();
     	$input['published_at'] = Carbon::now();
     	
@@ -31,12 +31,12 @@ class ArticlesController extends Controller
         return redirect('/');
     }
 
-    public function editArticle($articleID) {
+    public function edit($articleID) {
     	// edit article here
         return view('pages.editArticle');
     }
 
-    public function deleteArticle($articleID) {
+    public function destroy($articleID) {
     	// delete article here
         return view('pages.editArticle');
     }

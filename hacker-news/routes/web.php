@@ -11,16 +11,19 @@
 |
 */
 
+// Route::resource('articles', 'ArticlesController');
+Route::get('/', 'ArticlesController@show');
+Route::post('/', 'ArticlesController@store');
+Route::get('home', 'ArticlesController@show');
+Route::get('article/add', 'ArticlesController@create');
+Route::get('article/edit/{articleID}', 'ArticlesController@edit');
 
-Route::get('/', 'ArticlesController@home');
-Route::post('/', 'ArticlesController@saveArticle');
-Route::get('home', 'ArticlesController@home');
-
-Route::get('article/add', 'ArticlesController@addArticle');
-Route::get('article/edit/{articleID}', 'ArticlesController@editArticle');
 Route::get('article}', 'ArticlesController@deleteArticle');
 Route::get('article/{articleID}', 'ArticlesController@deleteArticle');
 Route::get('article/delete/{articleID}', 'ArticlesController@deleteArticle');
+
+
+
 
 
 Route::get('comments/{articleID}', 'CommentsController@showComments');
