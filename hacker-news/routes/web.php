@@ -12,15 +12,15 @@
 */
 
 
-Route::get('/', 'Controller@home');
-Route::post('/', 'Controller@saveArticle');
-Route::get('home', 'Controller@home');
+Route::get('/', 'ArticlesController@home');
+Route::post('/', 'ArticlesController@saveArticle');
+Route::get('home', 'ArticlesController@home');
 
-Route::get('article/add', 'Controller@addArticle');
-Route::get('article/edit/{articleID}', 'Controller@editArticle');
-Route::get('article}', 'Controller@deleteArticle');
-Route::get('article/{articleID}', 'Controller@deleteArticle');
-Route::get('article/delete/{articleID}', 'Controller@deleteArticle');
+Route::get('article/add', 'ArticlesController@addArticle');
+Route::get('article/edit/{articleID}', 'ArticlesController@editArticle');
+Route::get('article}', 'ArticlesController@deleteArticle');
+Route::get('article/{articleID}', 'ArticlesController@deleteArticle');
+Route::get('article/delete/{articleID}', 'ArticlesController@deleteArticle');
 
 
 Route::get('comments/{articleID}', 'Controller@showComments');
