@@ -4,15 +4,17 @@
 <div class="container">
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
-            <!-- show error
+        @if ($errors->any())
             <div class="alert alert-danger">
                 <strong>Whoops! Something went wrong!</strong>
                 <br><br>
                 <ul>
-                    <li>The title field is required.</li>
-                    <li>The url field is required.</li>
+                    @foreach ($errors->all() as $error)
+                        <li>{{$error}}</li>
+                    @endforeach
                 </ul>
-            </div> -->
+            </div>
+        @endif
             <div class="breadcrumb">
                 <a href="../home">← back to overview</a>
             </div>
