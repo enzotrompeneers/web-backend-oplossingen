@@ -8,6 +8,7 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 use App\Article;
+use App\User;
 use Carbon\Carbon;
 use App\Http\Requests\ArticleRequest;
 use Illuminate\Http\Request;
@@ -22,8 +23,9 @@ class ArticlesController extends Controller
 
     public function show() {
         $articles = Article::latest()->get();
+        $users = User::latest()->get();
         //return \Auth::user(); // not logged in = null
-        return view('pages.articles.show', compact('articles'));
+        return view('pages.articles.show', compact('articles', 'users'));
     }
 
     public function create() {
