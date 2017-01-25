@@ -9,7 +9,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 use App\Article;
 use Carbon\Carbon;
-use App\Http\Requests\CreateArticleRequest;
+use App\Http\Requests\ArticleRequest;
 use Illuminate\Http\Request;
 
 class ArticlesController extends Controller
@@ -24,7 +24,7 @@ class ArticlesController extends Controller
         return view('pages.addArticle');
     }
 
-    public function store(CreateArticleRequest $request) {
+    public function store(ArticleRequest $request) {
     	$input = $request->all();
     	$input['published_at'] = Carbon::now();
     	
@@ -37,7 +37,7 @@ class ArticlesController extends Controller
         return view('pages.editArticle', compact('article'));
     }
 
-    public function update($articleID, Request $request) {
+    public function update($articleID, ArticleRequest $request) {
         $article = Article::findOrFail($articleID);
         $article->update($request->all());
         // return view('pages.editArticle', compact('article'));
