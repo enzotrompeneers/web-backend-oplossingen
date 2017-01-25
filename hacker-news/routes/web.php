@@ -23,10 +23,10 @@ Route::get('article/{articleID}', 'ArticlesController@deleteArticle');
 Route::get('article/delete/{articleID}', 'ArticlesController@deleteArticle');
 
 
-Route::get('comments/{articleID}', 'Controller@showComments');
-Route::post('comments/add/{articleID}', 'Controller@addComment');
-Route::get('comments/edit/{commentID}', 'Controller@editComment');
-Route::get('comments/delete/{commentID}', 'Controller@deleteComment');
+Route::get('comments/{articleID}', 'CommentsController@showComments');
+Route::post('comments/add/{articleID}', 'CommentsController@addComment');
+Route::get('comments/edit/{commentID}', 'CommentsController@editComment');
+Route::get('comments/delete/{commentID}', 'CommentsController@deleteComment');
 
 Route::get('login', 'Controller@login');
 Route::get('register', 'Controller@register');
