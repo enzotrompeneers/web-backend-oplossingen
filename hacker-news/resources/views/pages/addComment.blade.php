@@ -36,8 +36,8 @@
                                 <div class="comment-body">test</div>
                                 <div class="comment-info">
                                     Posted by enzo on 2017-01-24 16:51:01                        
-                                    <a href="../comments/edit/{{$article->id}}" class ="btn btn-primary btn-xs edit-btn">edit</a>
-                                    <a href="../comments/delete/{{$article->id}}" class ="btn btn-danger btn-xs edit-btn">
+                                    <a href="../../comments/edit/{{$article->id}}" class ="btn btn-primary btn-xs edit-btn">edit</a>
+                                    <a href="../../comments/delete/{{$article->id}}" class ="btn btn-danger btn-xs edit-btn">
                                         <i class="fa fa-btn fa-trash" title="delete"></i> delete 
                                     </a>                                    
                                 </div>
