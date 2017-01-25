@@ -18,6 +18,7 @@ class ArticlesController extends Controller
     // -------------- articles --------------
     public function show() {
         $articles = Article::latest()->get();
+        //return \Auth::user(); // not logged in = null
         return view('pages.articles.show', compact('articles'));
     }
 
@@ -27,8 +28,9 @@ class ArticlesController extends Controller
 
     public function store(ArticleRequest $request) {
     	$input = $request->all();
+        $input['userID'] = Auth::user()->id;
     	$input['published_at'] = Carbon::now();
-        Auth::user();
+        //Auth::user();
     	
     	Article::create($input);
         return redirect('/');

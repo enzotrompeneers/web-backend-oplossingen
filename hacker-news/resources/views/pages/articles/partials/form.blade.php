@@ -1,6 +1,3 @@
-<!-- temporary -->
-{!! Form::hidden('userID', 1) !!}
-
 <div class="form-group">
     {!! Form::label('title', 'Title (max. 255 characters)', ['class'=> 'col-sm-3 control-label']) !!}
     <div class="col-sm-6">      
