@@ -17,7 +17,7 @@ class Controller extends BaseController
 
     // -------------- articles --------------
     public function home() {
-        $articles = Article::all();
+        $articles = Article::latest()->get();
         return view('pages.home', compact('articles'));
     }
 
@@ -29,8 +29,6 @@ class Controller extends BaseController
     	$input = Request::all();
     	$input['published_at'] = Carbon::now();
     	Article::create($input);
-    	$articles = Article::all();
-        //return view('pages.home', compact('articles'));
         return redirect('/');
     }
 
