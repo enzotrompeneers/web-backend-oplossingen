@@ -19,7 +19,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Add article</div>
                 <div class="panel-content">
-                    {!! Form::open()!!}
+                    {!! Form::open(['url' => '/'])!!}
                         <div class="form-group">
                             {!! Form::label('title', 'Title (max. 255 characters)', ['class'=> 'col-sm-3 control-label']) !!}
                             <div class="col-sm-6">      
