@@ -16,6 +16,10 @@ use Auth;
 class ArticlesController extends Controller
 {
     // -------------- articles --------------
+    public function __construct() {
+        $this->middleware('auth', ['only' => 'create']);
+    }
+
     public function show() {
         $articles = Article::latest()->get();
         //return \Auth::user(); // not logged in = null
