@@ -8,8 +8,8 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 use App\Article;
-use Request;
 use Carbon\Carbon;
+use App\Http\Requests\CreateArticleRequest;
 
 class ArticlesController extends Controller
 {
@@ -23,8 +23,8 @@ class ArticlesController extends Controller
         return view('pages.addArticle');
     }
 
-    public function saveArticle() {
-    	$input = Request::all();
+    public function saveArticle(CreateArticleRequest $request) {
+    	$input = $request->all();
     	$input['published_at'] = Carbon::now();
     	
     	Article::create($input);
