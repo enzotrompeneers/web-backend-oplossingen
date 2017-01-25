@@ -8,6 +8,7 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 use App\Article;
+use Request;
 
 class Controller extends BaseController
 {
@@ -21,6 +22,12 @@ class Controller extends BaseController
 
     public function addArticle() {
         return view('pages.addArticle');
+    }
+
+    public function saveArticle() {
+    	$input = Request::all();
+    	$articles = Article::all();
+        return view('pages.home', compact('articles'));
     }
 
     public function editArticle($articleID) {
