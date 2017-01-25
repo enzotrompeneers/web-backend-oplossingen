@@ -10,6 +10,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use App\Article;
 use Carbon\Carbon;
 use App\Http\Requests\CreateArticleRequest;
+use Illuminate\Http\Request;
 
 class ArticlesController extends Controller
 {
@@ -34,6 +35,13 @@ class ArticlesController extends Controller
     public function edit($articleID) {
     	$article = Article::findOrFail($articleID);
         return view('pages.editArticle', compact('article'));
+    }
+
+    public function update($articleID, Request $request) {
+        $article = Article::findOrFail($articleID);
+        $article->update($request->all());
+        // return view('pages.editArticle', compact('article'));
+        return redirect('/');
     }
 
     public function destroy($articleID) {

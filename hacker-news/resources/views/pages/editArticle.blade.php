@@ -38,7 +38,7 @@
                         <br><br>
                         <div class="form-group">
                             <div class="col-sm-offset-3 col-sm-6">
-                                {!! Form::submit('Add Article', ['class'=> 'btn btn-default']) !!}
+                                {!! Form::submit('Edit Article', ['class'=> 'btn btn-default']) !!}
                         </div>
                     {!! Form::close()!!}
                 </div>
