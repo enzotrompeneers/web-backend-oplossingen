@@ -17,11 +17,11 @@ class ArticlesController extends Controller
     // -------------- articles --------------
     public function show() {
         $articles = Article::latest()->get();
-        return view('pages.home', compact('articles'));
+        return view('pages.articles.show', compact('articles'));
     }
 
     public function create() {
-        return view('pages.addArticle');
+        return view('pages.articles.create');
     }
 
     public function store(ArticleRequest $request) {
@@ -34,7 +34,7 @@ class ArticlesController extends Controller
 
     public function edit($articleID) {
     	$article = Article::findOrFail($articleID);
-        return view('pages.editArticle', compact('article'));
+        return view('pages.articles.edit', compact('article'));
     }
 
     public function update($articleID, ArticleRequest $request) {
@@ -46,7 +46,7 @@ class ArticlesController extends Controller
 
     public function destroy($articleID) {
     	// delete article here
-        return view('pages.editArticle');
+        return view('pages.articles.edit');
     }
     // ----------- end articles -------------
 }
