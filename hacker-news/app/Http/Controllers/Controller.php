@@ -9,6 +9,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 use App\Article;
 use Request;
+use Carbon\Carbon;
 
 class Controller extends BaseController
 {
@@ -26,8 +27,11 @@ class Controller extends BaseController
 
     public function saveArticle() {
     	$input = Request::all();
+    	$input['published_at'] = Carbon::now();
+    	Article::create($input);
     	$articles = Article::all();
-        return view('pages.home', compact('articles'));
+        //return view('pages.home', compact('articles'));
+        return redirect('/');
     }
 
     public function editArticle($articleID) {
