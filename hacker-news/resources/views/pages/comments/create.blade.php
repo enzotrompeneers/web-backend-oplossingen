@@ -34,7 +34,7 @@
                         {{$article->points}} points  | posted by {{$article->username}} | <a href="comments/{{$article->id}}">{{$article->amountComments}} comments</a>
                     </div>
                     <div class="comments"> 
-                        @if ($article->amountComments <= 0 )
+                        @if ($article->amountComments == 0 )
                             <div>   
                                 <p>No comments yet</p>
                             </div>

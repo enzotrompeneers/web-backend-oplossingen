@@ -28,9 +28,9 @@ class CommentsController extends Controller
     }
 
 
-    public function store(CommentRequest $request, Article $article) {
+    public function store(CommentRequest $request, $articleID) {
         $input = $request->all();
-        $input['articleID'] = Auth::user()->id;
+        $input['articleID'] = $articleID;
     	Comment::create($input);
         Session()->flash('flashMessage', 'comment added succesfully');
         return back();
