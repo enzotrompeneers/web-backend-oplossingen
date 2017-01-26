@@ -32,19 +32,26 @@
                     <div class="info">
                         {{$article->points}} points  | posted by {{$article->username}} | <a href="comments/{{$article->id}}">{{$article->amountComments}} comments</a>
                     </div>
-                    <div class="comments">                            
-                        <ul>
-                            <li>
-                                <div class="comment-body">test</div>
-                                <div class="comment-info">
-                                    Posted by enzo on 2017-01-24 16:51:01                        
-                                    <a href="../../comments/edit/{{$article->id}}" class ="btn btn-primary btn-xs edit-btn">edit</a>
-                                    <a href="../../comments/delete/{{$article->id}}" class ="btn btn-danger btn-xs edit-btn">
-                                        <i class="fa fa-btn fa-trash" title="delete"></i> delete 
-                                    </a>                                    
-                                </div>
-                            </li>
-                        </ul>
+                    <div class="comments"> 
+                        @if ($article->amountComments <= 0 )
+                            <div>   
+                                <p>No comments yet</p>
+                            </div>
+                        @else
+                            <ul>
+                                <li>
+                                    <div class="comment-body">test</div>
+                                    <div class="comment-info">
+                                        Posted by enzo on 2017-01-24 16:51:01                        
+                                        <a href="../../comments/edit/{{$article->id}}" class ="btn btn-primary btn-xs edit-btn">edit</a>
+                                        <a href="../../comments/delete/{{$article->id}}" class ="btn btn-danger btn-xs edit-btn">
+                                            <i class="fa fa-btn fa-trash" title="delete"></i> delete 
+                                        </a>                                    
+                                    </div>
+                                </li>
+                            </ul>
+                        @endif                          
+                        
                     </div>
                     <!-- New Task Form -->
                     <form action="../../comments/add/{{$article->id}}" method="POST" class="form-horizontal">
