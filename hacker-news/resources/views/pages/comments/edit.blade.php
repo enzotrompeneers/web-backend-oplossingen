@@ -16,23 +16,32 @@
                 </div>
                 <!-- New Task Form -->
                 <div class="panel-content">
-                    <form action="{{ route('updateComments', ['commentID' => $comment->id]) }}" class="form-horizontal" method="get">
-                        {{ csrf_field() }}
-                        {{ method_field('PATCH') }}
-                        <!-- Article data -->
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label" for="body">Comment</label>
-                            <div class="col-sm-6">
-                                <textarea class="form-control" id="body" name="body" maxlength="1000">{{ $comment->comment }}</textarea>
-                            </div>
+                <form 
+                    action="{{ route('updateComments', ['commentID' => $comment->id]) }}"
+                    method="post"
+                    class="form-horizontal">
+
+                    {{ csrf_field() }}
+
+                    <!-- Article data -->
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label" for="comment">Comment</label>
+                        <div class="col-sm-6">
+                            <textarea class="form-control" id="comment" name="comment" maxlength="1000">
+                            {{ $comment->comment }}
+                            </textarea>
                         </div>
-                        <!-- Add Article Button -->
-                        <div class="form-group">
-                            <div class="col-sm-offset-3 col-sm-6">
-                                <button class="btn btn-default" type="submit"><i class="fa fa-pencil-square-o"></i> Edit comment</button>
-                            </div>
+                    </div>
+
+                    <!-- Add Article Button -->
+                    <div class="form-group">
+                        <div class="col-sm-offset-3 col-sm-6">
+                            <button class="btn btn-default" type="submit">
+                            <i class="fa fa-pencil-square-o"></i> Edit comment
+                            </button>
                         </div>
-                    </form>
+                    </div>
+                </form>
                 </div>
             </div>
         </div>

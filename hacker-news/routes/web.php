@@ -21,11 +21,12 @@ Route::get('article/edit/{articleID}', 'ArticlesController@edit')->name('editArt
 Route::get('article/delete/{articleID}', 'ArticlesController@delete')->name('deleteArticle');
 Route::delete('article/delete/{articleID}', 'ArticlesController@destroy')->name('destroyArticle');
 
+//Route::resource('comments', 'CommentsController');
 Route::get('comments/{articleID}', 'CommentsController@show')->name('showComments');
 Route::post('comments/add/{articleID}', 'CommentsController@create')->name('createComments');
 Route::post('comments/{articleID}', 'CommentsController@store')->name('storeComment');
 Route::get('comments/edit/{commentID}', 'CommentsController@edit')->name('editComments');
-Route::get('comments/update/{commentID}', 'CommentsController@update')->name('updateComments');
+Route::post('comments/update/{commentID}', 'CommentsController@update')->name('updateComments');
 Route::get('comments/delete/{commentID}', 'CommentsController@delete')->name('deleteComments');
 Route::delete('comments/delete/{commentID}', 'CommentsController@destroy')->name('destoryComments');
 
