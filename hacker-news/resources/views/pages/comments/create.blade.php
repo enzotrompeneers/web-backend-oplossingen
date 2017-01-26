@@ -34,25 +34,18 @@
                         {{$article->points}} points  | posted by {{$article->username}} | <a href="comments/{{$article->id}}">{{$article->amountComments}} comments</a>
                     </div>
                     <div class="comments"> 
-                        @if ($article->amountComments == 0 )
+                            @foreach ($comments as $comment)
+                                <p>test</p>
+                        @endforeach
+
+                        @if ($article->amountComments <= 0 )
                             <div>   
                                 <p>No comments yet</p>
                             </div>
                         @else
-                            @foreach ($comments as $comment)
-                            <ul>
-                                <li>
-                                    <div class="comment-body">$comment->name</div>
-                                    <div class="comment-info">
-                                        Posted by {{$article->username}} on {{$comment->published_at}}                       
-                                        <a href="../../comments/edit/{{$article->id}}" class ="btn btn-primary btn-xs edit-btn">edit</a>
-                                        <a href="../../comments/delete/{{$article->id}}" class ="btn btn-danger btn-xs edit-btn">
-                                            <i class="fa fa-btn fa-trash" title="delete"></i> delete 
-                                        </a>                                    
-                                    </div>
-                                </li>
-                            </ul>
-                            @endforeach
+                            
+                            
+                            
                         @endif                          
                         
                     </div>

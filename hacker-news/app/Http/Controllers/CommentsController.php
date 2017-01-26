@@ -19,7 +19,8 @@ class CommentsController extends Controller
     // -------------- comments --------------
     public function show($articleID) {
         $article = Article::findOrFail($articleID);
-        return view('pages.comments.create', compact('article'));
+        $comments = Comment::latest()->get();
+        return view('pages.comments.create', compact('article', 'comments'));
     }
 
     public function create($articleID) {
@@ -27,11 +28,12 @@ class CommentsController extends Controller
         return view('pages.comments.create', compact('article'));
     }
 
-
     public function store(CommentRequest $request, $articleID) {
         $input = $request->all();
         $input['articleID'] = $articleID;
     	Comment::create($input);
+        $article = Article::findOrFail($articleID);
+        $comments = Comment::latest()->get();
         Session()->flash('flashMessage', 'comment added succesfully');
         return back();
     }
