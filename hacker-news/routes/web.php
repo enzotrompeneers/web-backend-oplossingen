@@ -29,7 +29,7 @@ Route::get('comments/edit/{commentID}', 'CommentsController@edit')->name('editCo
 Route::post('comments/update/{commentID}', 'CommentsController@update')->name('updateComments');
 
 Route::get('comments/delete/{commentID}', 'CommentsController@deleteConfrimation')->name('deleteComments');
-Route::delete('comments/delete/{commentID}', 'CommentsController@destroy')->name('destoryComments');
+Route::delete('comments/delete/{commentID}', 'CommentsController@destroy')->name('destroyComments');
 
 Auth::routes();
 Route::get('login', 'Controller@showLoginForm')->name('login');

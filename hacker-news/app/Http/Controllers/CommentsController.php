@@ -54,13 +54,13 @@ class CommentsController extends Controller
     public function deleteConfrimation($commentID) {
         $comment = Comment::findOrFail($commentID);
         $delete = true;
-        return view('pages.comment.edit', compact('comment', 'delete'));
+        return view('pages.comments.edit', compact('comment', 'delete'));
     }
 
     public function destroy($commentID) {
-        $comment = Comment::findOrFail($commentID);
+        $comment = Comment::find($commentID);
         $article = Article::findOrFail($comment->articleID);
-        if($comment->destroy()) {
+        if($comment->delete()) {
             $article->amountComments--;
             $article->save();
         }
