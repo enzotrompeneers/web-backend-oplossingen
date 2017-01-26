@@ -34,18 +34,28 @@
                         {{$article->points}} points  | posted by {{$article->username}} | <a href="comments/{{$article->id}}">{{$article->amountComments}} comments</a>
                     </div>
                     <div class="comments"> 
-                            @foreach ($comments as $comment)
-                                <p>test</p>
-                        @endforeach
-
-                        @if ($article->amountComments <= 0 )
+                        @if ($comments)
+                            <ul>
+                                @foreach ($comments as $comment)
+                                    <li>
+                                        <div class="comment-body">{{ $comment->comment }}</div>
+                                        <div class="comment-info">Posted by {{ $article->username }} on {{ $comment->created_at }}
+                                           @if ($comment->user_id == Auth::id())
+                                                <a class="btn btn-primary btn-xs edit-btn"
+                                                href="{{ route('edit_comment', ['comment' => $comment->id]) }}">edit</a>
+                                                <a class="btn btn-danger btn-xs edit-btn"
+                                                href="{{ route('delete_comment', ['comment' => $comment->id]) }}">
+                                                    <i class="fa fa-btn fa-trash" title="delete"></i>delete
+                                                </a>
+                                            @endif
+                                        </div>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        @else
                             <div>   
                                 <p>No comments yet</p>
                             </div>
-                        @else
-                            
-                            
-                            
                         @endif                          
                         
                     </div>
