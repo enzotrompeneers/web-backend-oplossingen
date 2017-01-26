@@ -40,7 +40,10 @@ class CommentsController extends Controller
     }
 
     public function edit($commentID) {
-        $comment = Comment::findOrFail($commentID);
+        $comment = Comment::find($commentID);
+        if(!$comment) {
+            return redirect(route('showArticle'));
+        }
         return view('pages.comments.edit', compact('comment'));
     }
 
@@ -59,12 +62,16 @@ class CommentsController extends Controller
 
     public function destroy($commentID) {
         $comment = Comment::find($commentID);
-        $article = Article::findOrFail($comment->articleID);
-        if($comment->delete()) {
-            $article->amountComments--;
-            $article->save();
+        if($comment) {
+            $article = Article::findOrFail($comment->articleID);
+            if($article) {
+                if($comment->delete()) {
+                    $article->amountComments--;
+                    $article->save();
+                }
+            }
         }
-        return redirect(route('editComments', compact('commentID')));
+        return redirect(route('showArticle'));
     }
     // ------------ end comments -------------
 }
