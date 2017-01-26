@@ -8,8 +8,11 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 use App\Article;
+use App\Comment;
+use App\Http\Requests\CommentRequest;
 use Request;
 use Carbon\Carbon;
+use Auth;
 
 class CommentsController extends Controller
 {
@@ -21,8 +24,16 @@ class CommentsController extends Controller
 
     public function create($articleID) {
         $article = Article::findOrFail($articleID);
-        // add comment here
         return view('pages.comments.create', compact('article'));
+    }
+
+
+    public function store(CommentRequest $request, Article $article) {
+        $input = $request->all();
+        $input['articleID'] = Auth::user()->id;
+    	Comment::create($input);
+        Session()->flash('flashMessage', 'comment added succesfully');
+        return back();
     }
 
     public function edit($commentID) {

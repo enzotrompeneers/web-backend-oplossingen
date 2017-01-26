@@ -4,6 +4,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
+        @include('partials.flash')
             <div class="breadcrumb">
                 <a href="{{route('showArticle')}}">← back to overview</a>
             </div>
@@ -38,11 +39,12 @@
                                 <p>No comments yet</p>
                             </div>
                         @else
+                            @foreach ($comments as $comment)
                             <ul>
                                 <li>
-                                    <div class="comment-body">test</div>
+                                    <div class="comment-body">$comment->name</div>
                                     <div class="comment-info">
-                                        Posted by enzo on 2017-01-24 16:51:01                        
+                                        Posted by {{$article->username}} on {{$comment->published_at}}                       
                                         <a href="../../comments/edit/{{$article->id}}" class ="btn btn-primary btn-xs edit-btn">edit</a>
                                         <a href="../../comments/delete/{{$article->id}}" class ="btn btn-danger btn-xs edit-btn">
                                             <i class="fa fa-btn fa-trash" title="delete"></i> delete 
@@ -50,26 +52,24 @@
                                     </div>
                                 </li>
                             </ul>
+                            @endforeach
                         @endif                          
                         
                     </div>
                     <!-- New Task Form -->
-                    <form action="../../comments/add/{{$article->id}}" method="POST" class="form-horizontal">
-                        <input type="hidden" name="_token" value="{{csrf_token()}}">
+                    <form action="{{ route('storeComment', ['articleID' => $article->id]) }}" class="form-horizontal" method="post">
+                        {{ csrf_field() }}
                         <!-- Comment data -->
                         <div class="form-group">
-                            <label for="comment" class="col-sm-3 control-label">Comment</label>
+                            <label class="col-sm-3 control-label" for="body">Comment</label>
                             <div class="col-sm-6">
-                                <textarea type="text" name="comment" id="comment" class="form-control"></textarea>
+                                <textarea class="form-control" id="body" name="comment" maxlength="1000"></textarea>
                             </div>
                         </div>
-                        <input type="hidden" name="{{$article->id}}" value="10">
                         <!-- Add comment -->
                         <div class="form-group">
                             <div class="col-sm-offset-3 col-sm-6">
-                                <button type="submit" class="btn btn-default">
-                                    <i class="fa fa-plus"></i> Add comment
-                                </button>
+                                <button class="btn btn-default" type="submit"><i class="fa fa-plus"></i> Add comment</button>
                             </div>
                         </div>
                     </form>

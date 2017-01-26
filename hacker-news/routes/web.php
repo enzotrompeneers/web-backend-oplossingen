@@ -23,6 +23,7 @@ Route::delete('article/delete/{articleID}', 'ArticlesController@destroy')->name(
 
 Route::get('comments/{articleID}', 'CommentsController@show')->name('showComments');
 Route::post('comments/add/{articleID}', 'CommentsController@create')->name('createComments');
+Route::post('comments/{articleID}', 'CommentsController@store')->name('storeComment');
 Route::get('comments/edit/{commentID}', 'CommentsController@edit')->name('editComments');
 Route::get('comments/delete/{commentID}', 'CommentsController@delete')->name('deleteComments');
 Route::delete('comments/delete/{commentID}', 'CommentsController@destroy')->name('deleteComments');
