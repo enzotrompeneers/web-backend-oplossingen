@@ -53,15 +53,19 @@ class ArticlesController extends Controller
         $article->update($request->all());
         return redirect('/');
     }
-    
-    public function delete($articleID) {
-        // delete session here
-        return view('/');
+
+    public function deleteConfrimation($articleID) {
+        $article = Article::findOrFail($articleID);
+        $delete = true;
+        return view('pages.articles.edit', compact('article', 'delete'));
     }
 
     public function destroy($articleID) {
-    	// destroy article here
-        return view('/');
+        $article = Article::find($articleID);
+        if($article) {
+            $article->delete();
+        }
+        return redirect(route('showArticle'));
     }
     // ----------- end articles -------------
 }

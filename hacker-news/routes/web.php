@@ -18,7 +18,7 @@ Route::post('/', 'ArticlesController@store')->name('storeArticle');
 Route::get('home', 'ArticlesController@show')->name('showArticle');
 Route::get('article/add', 'ArticlesController@create')->name('createArticle');
 Route::get('article/edit/{articleID}', 'ArticlesController@edit')->name('editArticle');
-Route::get('article/delete/{articleID}', 'ArticlesController@delete')->name('deleteArticle');
+Route::get('article/delete/{articleID}', 'ArticlesController@deleteConfrimation')->name('deleteArticle');
 Route::delete('article/delete/{articleID}', 'ArticlesController@destroy')->name('destroyArticle');
 
 //Route::resource('comments', 'CommentsController');
