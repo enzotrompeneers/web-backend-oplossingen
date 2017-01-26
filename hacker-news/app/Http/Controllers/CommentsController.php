@@ -46,6 +46,7 @@ class CommentsController extends Controller
 
     public function delete($commentID) {
         // delete comment here
+        $article->amountComments --;
         return view('pages.comments.edit');
     }
     // ------------ end comments -------------
