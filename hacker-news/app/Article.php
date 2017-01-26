@@ -5,14 +5,13 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 class Article extends Model {
-
-	protected $fillable = [ // mass assigned, those the user can change
-		'title',
-		'url',
-		'userID' // temp
-	];
+	//'userID' // temp
+	protected $fillable = ['title', 'url'];
 
 	public function user() {
 		return $this->belongsTo('App\User');
 	}
+	public function comments() {
+        return $this->hasMany('App\Comment');
+    }
 }
