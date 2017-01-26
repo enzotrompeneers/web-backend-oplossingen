@@ -27,7 +27,8 @@ Route::post('comments/add/{articleID}', 'CommentsController@create')->name('crea
 Route::post('comments/{articleID}', 'CommentsController@store')->name('storeComment');
 Route::get('comments/edit/{commentID}', 'CommentsController@edit')->name('editComments');
 Route::post('comments/update/{commentID}', 'CommentsController@update')->name('updateComments');
-Route::get('comments/delete/{commentID}', 'CommentsController@delete')->name('deleteComments');
+
+Route::get('comments/delete/{commentID}', 'CommentsController@deleteConfrimation')->name('deleteComments');
 Route::delete('comments/delete/{commentID}', 'CommentsController@destroy')->name('destoryComments');
 
 Auth::routes();

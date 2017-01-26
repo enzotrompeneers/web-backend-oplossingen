@@ -7,7 +7,7 @@
             <div class="breadcrumb">
                 <a href="{{route('showArticle', ['articleID' => $comment->articleID])}}">← back to comments</a>
             </div>
-
+            @include('pages.comments.deleteConfirmation')
             <div class="panel panel-default">
                 <div class="panel-heading clearfix">Edit comment
                 <a class="btn btn-danger btn-xs edit-btn pull-right" href="{{route('deleteComments', ['commentID' => $comment->id])}}">
@@ -27,9 +27,8 @@
                     <div class="form-group">
                         <label class="col-sm-3 control-label" for="comment">Comment</label>
                         <div class="col-sm-6">
-                            <textarea class="form-control" id="comment" name="comment" maxlength="1000">
-                            {{ $comment->comment }}
-                            </textarea>
+                            
+                            <textarea class="form-control" id="comment" name="comment" maxlength="1000">{{ $comment->comment }}</textarea>
                         </div>
                     </div>
 

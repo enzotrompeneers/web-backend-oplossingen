@@ -44,22 +44,27 @@ class CommentsController extends Controller
         return view('pages.comments.edit', compact('comment'));
     }
 
-    public function update($commentID, CommentRequest $request) {
+    public function update(CommentRequest $request, $commentID) {
         $comment = Comment::findOrFail($commentID);
-        $comment->update($request->all());
-        return redirect('/');
+        $comment->update($request->except(['articleID'])); // for safety (e ignoring "possible existence") 
+        // return redirect(route('updateComments', compact('commentID')));
+        return redirect(route('editComments', compact('commentID')));
     }
 
-    public function delete($commentID) {
-        // delete comment here
-        $article->amountComments --;
-        return view('pages.comments.edit');
+    public function deleteConfrimation($commentID) {
+        $comment = Comment::findOrFail($commentID);
+        $delete = true;
+        return view('pages.comment.edit', compact('comment', 'delete'));
     }
 
     public function destroy($commentID) {
-        // destory comment here
-        $article->amountComments --;
-        return view('pages.comments.edit');
+        $comment = Comment::findOrFail($commentID);
+        $article = Article::findOrFail($comment->articleID);
+        if($comment->destroy()) {
+            $article->amountComments--;
+            $article->save();
+        }
+        return redirect(route('editComments', compact('commentID')));
     }
     // ------------ end comments -------------
 }
