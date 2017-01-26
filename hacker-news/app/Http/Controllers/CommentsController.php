@@ -40,12 +40,24 @@ class CommentsController extends Controller
     }
 
     public function edit($commentID) {
-        $comment = Article::findOrFail($commentID);
+        $comment = Comment::findOrFail($commentID);
         return view('pages.comments.edit', compact('comment'));
+    }
+
+    public function update($commentID, CommentRequest $request) {
+        $comment = Comment::findOrFail($commentID);
+        $comment->update($request->all());
+        return redirect('/');
     }
 
     public function delete($commentID) {
         // delete comment here
+        $article->amountComments --;
+        return view('pages.comments.edit');
+    }
+
+    public function destroy($commentID) {
+        // destory comment here
         $article->amountComments --;
         return view('pages.comments.edit');
     }

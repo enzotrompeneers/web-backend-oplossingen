@@ -53,6 +53,7 @@ class ArticlesController extends Controller
         $article->update($request->all());
         return redirect('/');
     }
+    
     public function delete($articleID) {
         // delete session here
         return view('/');

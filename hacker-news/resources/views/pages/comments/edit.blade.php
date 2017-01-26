@@ -4,23 +4,38 @@
 <div class="container">
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
-            @include ('errors.list')
             <div class="breadcrumb">
-                <a href="{{route('showArticle')}}">← back to overview</a>
+                <a href="{{route('showArticle', ['articleID' => $comment->articleID])}}">← back to comments</a>
             </div>
+
             <div class="panel panel-default">
-                <div class="panel-heading">Edit comment
-                    <a class="btn btn-danger btn-xs pull-right" href="{{route('deleteComment', ['commentID' => $comment->id])}}">
-                        <i class="fa fa-btn fa-trash" title="delete"></i> delete article
-                    </a>
+                <div class="panel-heading clearfix">Edit comment
+                <a class="btn btn-danger btn-xs edit-btn pull-right" href="{{route('deleteComments', ['commentID' => $comment->id])}}">
+                    <i class="fa fa-btn fa-trash" title="delete"></i> delete comment
+                </a>
                 </div>
+                <!-- New Task Form -->
                 <div class="panel-content">
-                    {!! Form::model($article, ['method' => 'PATCH', 'action' => ['ArticlesController@update', $article->id]])!!}
-                        @include ('pages.articles.partials.form', ['submitBtnText' => 'Edit Article'])
-                    {!! Form::close()!!}
+                    <form action="{{ route('updateComments', ['commentID' => $comment->id]) }}" class="form-horizontal" method="get">
+                        {{ csrf_field() }}
+                        {{ method_field('PATCH') }}
+                        <!-- Article data -->
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label" for="body">Comment</label>
+                            <div class="col-sm-6">
+                                <textarea class="form-control" id="body" name="body" maxlength="1000">{{ $comment->comment }}</textarea>
+                            </div>
+                        </div>
+                        <!-- Add Article Button -->
+                        <div class="form-group">
+                            <div class="col-sm-offset-3 col-sm-6">
+                                <button class="btn btn-default" type="submit"><i class="fa fa-pencil-square-o"></i> Edit comment</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
-@endsection
+@stop
