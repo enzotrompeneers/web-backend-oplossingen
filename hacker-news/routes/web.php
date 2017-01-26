@@ -13,17 +13,19 @@
 
 Route::resource('articles', 'ArticlesController');
 Route::get('/', 'ArticlesController@show');
-Route::post('/', 'ArticlesController@store');
-Route::get('home', 'ArticlesController@show');
-Route::get('article/add', 'ArticlesController@create');
-Route::get('article/edit/{articleID}', 'ArticlesController@edit');
+Route::post('/', 'ArticlesController@store')->name('storeArticle');
+
+Route::get('home', 'ArticlesController@show')->name('showArticle');
+Route::get('article/add', 'ArticlesController@create')->name('createArticle');
+Route::get('article/edit/{articleID}', 'ArticlesController@edit')->name('editArticle');
 Route::get('article/delete/{articleID}', 'ArticlesController@delete')->name('deleteArticle');
 Route::delete('article/delete/{articleID}', 'ArticlesController@destroy')->name('destroyArticle');
 
-Route::get('comments/{articleID}', 'CommentsController@showComments');
-Route::post('comments/add/{articleID}', 'CommentsController@addComment');
-Route::get('comments/edit/{commentID}', 'CommentsController@editComment');
-Route::get('comments/delete/{commentID}', 'CommentsController@deleteComment');
+Route::get('comments/{articleID}', 'CommentsController@show')->name('showComments');
+Route::post('comments/add/{articleID}', 'CommentsController@create')->name('createComments');
+Route::get('comments/edit/{commentID}', 'CommentsController@edit')->name('editComments');
+Route::get('comments/delete/{commentID}', 'CommentsController@delete')->name('deleteComments');
+Route::delete('comments/delete/{commentID}', 'CommentsController@destroy')->name('deleteComments');
 
 Auth::routes();
 
