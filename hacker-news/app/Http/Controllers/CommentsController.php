@@ -48,10 +48,13 @@ class CommentsController extends Controller
     }
 
     public function update(CommentRequest $request, $commentID) {
-        $comment = Comment::findOrFail($commentID);
+        $comment = Comment::find($commentID);
+        if(!$comment) {
+            return redirect(route('showArticle'));
+        }
         $comment->update($request->except(['articleID'])); // for safety (e ignoring "possible existence") 
         // return redirect(route('updateComments', compact('commentID')));
-        return redirect(route('editComments', compact('commentID')));
+        return redirect(route('showComments', ['articleID' => $comment->articleID]));
     }
 
     public function deleteConfrimation($commentID) {
