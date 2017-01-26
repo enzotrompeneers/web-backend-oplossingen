@@ -21,6 +21,9 @@
                                     </div>
                                     <div class="url">
                                         <a href="{{$article->url}}" class="urlTitle">{{$article->title}}</a>
+                                         @if ($article->userID == Auth::id())
+                                            <a href="{{ route('editArticle', ['articleID' => $article->id]) }}" class="btn btn-primary btn-xs edit-btn">edit</a>
+                                        @endif  
                                     </div> 
                                     <div class="info">
                                         {{$article->points}} points  | posted by {{$article->username}} | <a href="comments/{{$article->id}}">{{$article->amountComments}} comments</a>

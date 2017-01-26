@@ -9,7 +9,7 @@
                 <a href="{{route('showArticle')}}">← back to overview</a>
             </div>
             <div class="panel panel-default">
-                <div class="panel-heading">Edit article
+                <div class="panel-heading">Edit articles
                     <a class="btn btn-danger btn-xs pull-right" href="{{route('deleteArticle', ['articleID' => $article->id])}}">
                         <i class="fa fa-btn fa-trash" title="delete"></i> delete article
                     </a>

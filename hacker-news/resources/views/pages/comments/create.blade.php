@@ -10,11 +10,13 @@
             <div class="panel panel-default">
                 <div class="panel-heading clearfix">
                     Article: {{$article->title}}
-                    <a href="{{url('comments', $article->id)}}" class="btn btn-danger btn-xs pull-right">
+                    <a href="{{route('deleteArticle', ['article' => $article->id]) }}" class="btn btn-danger btn-xs pull-right">
                         <i class="fa fa-btn fa-trash" title="delete"></i> delete article
                     </a>
                 </div>
                 <div class="panel-content">
+
+                    <!-- VOTE SECTION with a comment -->
                     <div class="vote">                                         
                         <div class="form-inline upvote">
                             <i class="fa fa-btn fa-caret-up disabled upvote" title="can't upvote your own articles"></i>
@@ -30,6 +32,8 @@
                     <div class="info">
                         0 points  | posted by enzo | 1 comment
                     </div>
+                    <!-- end vote section -->
+
                     <div class="comments">                            
                         <ul>
                             <li>
