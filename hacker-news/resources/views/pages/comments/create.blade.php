@@ -40,11 +40,11 @@
                                     <li>
                                         <div class="comment-body">{{ $comment->comment }}</div>
                                         <div class="comment-info">Posted by {{ $article->username }} on {{ $comment->created_at }}
-                                           @if ($comment->user_id == Auth::id())
+                                           @if ($article->userID == Auth::id())
                                                 <a class="btn btn-primary btn-xs edit-btn"
-                                                href="{{ route('edit_comment', ['comment' => $comment->id]) }}">edit</a>
+                                                href="{{ route('editComments', ['comment' => $comment->id]) }}">edit</a>
                                                 <a class="btn btn-danger btn-xs edit-btn"
-                                                href="{{ route('delete_comment', ['comment' => $comment->id]) }}">
+                                                href="{{ route('deleteComments', ['comment' => $comment->id]) }}">
                                                     <i class="fa fa-btn fa-trash" title="delete"></i>delete
                                                 </a>
                                             @endif
