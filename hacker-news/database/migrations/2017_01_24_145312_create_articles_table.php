@@ -18,6 +18,9 @@ class CreateArticlesTable extends Migration
             $table->integer('userID')->unsigned();
             $table->string('title');
             $table->string('url');
+            $table->string('username');
+            $table->integer('points');
+            $table->integer('amountComments');
             $table->timestamps();
         });
     }

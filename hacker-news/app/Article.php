@@ -5,8 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 class Article extends Model {
-	//'userID' // temp
-	protected $fillable = ['title', 'url'];
+	protected $fillable = ['title', 'url', 'userID', 'username', 'points', 'amountComments'];
 
 	public function user() {
 		return $this->belongsTo('App\User');

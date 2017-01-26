@@ -23,7 +23,7 @@
                                         <a href="{{$article->url}}" class="urlTitle">{{$article->title}}</a>
                                     </div> 
                                     <div class="info">
-                                        0 points  | posted by {{$article->userID}} | <a href="comments/{{$article->id}}">0 comments</a>
+                                        {{$article->points}} points  | posted by {{$article->username}} | <a href="comments/{{$article->id}}">{{$article->amountComments}} comments</a>
                                     </div>
                                 </li>
                             @endforeach

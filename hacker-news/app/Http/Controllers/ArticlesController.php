@@ -35,6 +35,9 @@ class ArticlesController extends Controller
     	$input = $request->all();
         $input['userID'] = Auth::user()->id;
     	$input['published_at'] = Carbon::now();
+        $input['username'] = Auth::user()->name;
+        $input['points'] = 0;
+        $input['amountComments'] = 0;
     	Article::create($input);
         Session()->flash('flashMessage', 'article ' . $input['title'] . ' created succesfully');
         return redirect('/');
