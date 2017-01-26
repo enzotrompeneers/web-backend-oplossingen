@@ -40,8 +40,8 @@ class CommentsController extends Controller
     }
 
     public function edit($commentID) {
-        // edit comment here
-        return view('pages.comments.edit');
+        $comment = Article::findOrFail($commentID);
+        return view('pages.comments.edit', compact('comment'));
     }
 
     public function delete($commentID) {
