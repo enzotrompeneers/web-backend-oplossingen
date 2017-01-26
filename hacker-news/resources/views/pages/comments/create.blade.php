@@ -15,25 +15,23 @@
                     </a>
                 </div>
                 <div class="panel-content">
-
-                    <!-- VOTE SECTION with a comment -->
-                    <div class="vote">                                         
+                    <div class="vote">                
                         <div class="form-inline upvote">
-                            <i class="fa fa-btn fa-caret-up disabled upvote" title="can't upvote your own articles"></i>
-                        </div>                                          
-                        <div class="form-inline downvote">
-                            <i class="fa fa-btn fa-caret-down disabled"  title="can't downvote your own articles"></i>
+                            <i class="fa fa-btn fa-caret-up disabled upvote" title="You need to be logged in to upvote"></i>
+                        </div>
+                        <div class="form-inline upvote">
+                            <i class="fa fa-btn fa-caret-down disabled downvote" title="You need to be logged in to downvote"></i>
                         </div>
                     </div>
                     <div class="url">
-                        <a href="{{$article->url}}" class="urlTitle">{{$article->title}}</a>                            
-                        <a href="../article/edit/{{$article->id}}" class ="btn btn-primary btn-xs edit-btn">edit</a>
+                        <a href="{{$article->url}}" class="urlTitle">{{$article->title}}</a>
+                            @if ($article->userID == Auth::id())
+                            <a href="{{ route('editArticle', ['articleID' => $article->id]) }}" class="btn btn-primary btn-xs edit-btn">edit</a>
+                        @endif  
                     </div> 
                     <div class="info">
-                        0 points  | posted by enzo | 1 comment
+                        {{$article->points}} points  | posted by {{$article->username}} | <a href="comments/{{$article->id}}">{{$article->amountComments}} comments</a>
                     </div>
-                    <!-- end vote section -->
-
                     <div class="comments">                            
                         <ul>
                             <li>
