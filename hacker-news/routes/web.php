@@ -28,6 +28,5 @@ Route::get('comments/delete/{commentID}', 'CommentsController@delete')->name('de
 Route::delete('comments/delete/{commentID}', 'CommentsController@destroy')->name('deleteComments');
 
 Auth::routes();
-
-Route::get('login', 'Controller@showLoginForm');
-Route::get('register', 'Controller@showRegisterForm');
+Route::get('login', 'Controller@showLoginForm')->name('login');
+Route::get('register', 'Controller@showRegisterForm')->name('register');

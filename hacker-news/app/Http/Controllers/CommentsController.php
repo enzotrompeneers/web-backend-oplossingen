@@ -14,25 +14,25 @@ use Carbon\Carbon;
 class CommentsController extends Controller
 {
     // -------------- comments --------------
-    public function showComments($articleID) {
+    public function show($articleID) {
         $article = Article::findOrFail($articleID);
-        return view('pages.addComment', compact('article'));
+        return view('pages.comments.create', compact('article'));
     }
 
-    public function addComment($articleID) {
+    public function create($articleID) {
         $article = Article::findOrFail($articleID);
         // add comment here
-        return view('pages.addComment', compact('article'));
+        return view('pages.comments.create', compact('article'));
     }
 
-    public function editComment($commentID) {
+    public function edit($commentID) {
         // edit comment here
-        return view('pages.editComment');
+        return view('pages.comments.edit');
     }
 
-    public function deleteComment($commentID) {
+    public function delete($commentID) {
         // delete comment here
-        return view('pages.editComment');
+        return view('pages.comments.edit');
     }
     // ------------ end comments -------------
 }
