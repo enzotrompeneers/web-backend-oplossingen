@@ -36,7 +36,6 @@ class ArticlesController extends Controller
     	$input = $request->all();
         $input['userID'] = Auth::user()->id;
     	$input['published_at'] = Carbon::now();
-        //Auth::user();
     	
     	Article::create($input);
         return redirect('/');
@@ -53,10 +52,14 @@ class ArticlesController extends Controller
         // return view('pages.editArticle', compact('article'));
         return redirect('/');
     }
+    public function delete($articleID) {
+        // delete session here
+        return view('/');
+    }
 
     public function destroy($articleID) {
-    	// delete article here
-        return view('pages.articles.edit');
+    	// destroy article here
+        return view('/');
     }
     // ----------- end articles -------------
 }

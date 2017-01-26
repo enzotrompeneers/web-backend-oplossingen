@@ -10,7 +10,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading clearfix">
                     Article: {{$article->title}}
-                    <a href="{{url('/comments', $article->id)}}" class="btn btn-danger btn-xs pull-right">
+                    <a href="{{url('comments', $article->id)}}" class="btn btn-danger btn-xs pull-right">
                         <i class="fa fa-btn fa-trash" title="delete"></i> delete article
                     </a>
                 </div>
