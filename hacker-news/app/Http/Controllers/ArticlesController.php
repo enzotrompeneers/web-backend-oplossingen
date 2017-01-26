@@ -24,7 +24,6 @@ class ArticlesController extends Controller
     public function show() {
         $articles = Article::latest()->get();
         $users = User::latest()->get();
-        //return \Auth::user(); // not logged in = null
         return view('pages.articles.show', compact('articles', 'users'));
     }
 
@@ -36,8 +35,8 @@ class ArticlesController extends Controller
     	$input = $request->all();
         $input['userID'] = Auth::user()->id;
     	$input['published_at'] = Carbon::now();
-    	
     	Article::create($input);
+        Session()->flash('flashMessage', 'article ' . $input['title'] . ' created succesfully');
         return redirect('/');
     }
 
@@ -49,7 +48,6 @@ class ArticlesController extends Controller
     public function update($articleID, ArticleRequest $request) {
         $article = Article::findOrFail($articleID);
         $article->update($request->all());
-        // return view('pages.editArticle', compact('article'));
         return redirect('/');
     }
     public function delete($articleID) {
