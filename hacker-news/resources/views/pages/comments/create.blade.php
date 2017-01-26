@@ -34,7 +34,7 @@
                         {{$article->points}} points  | posted by {{$article->username}} | <a href="comments/{{$article->id}}">{{$article->amountComments}} comments</a>
                     </div>
                     <div class="comments"> 
-                        @if ($comments)
+                        @if ($article->amountComments > 0)
                             <ul>
                                 @foreach ($comments as $comment)
                                     <li>

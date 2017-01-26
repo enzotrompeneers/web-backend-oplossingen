@@ -33,7 +33,8 @@ class CommentsController extends Controller
         $input['articleID'] = $articleID;
     	Comment::create($input);
         $article = Article::findOrFail($articleID);
-        $comments = Comment::latest()->get();
+        $article->amountComments ++;
+        $article->update($request->all());
         Session()->flash('flashMessage', 'comment added succesfully');
         return back();
     }
